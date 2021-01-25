@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import CollectionItem from "../collection-item/Collection-item.component";
+import CollectionItem from "./Collection-item.component";
 
 const CollectionPreview = ({ title, items }) => {
   return (

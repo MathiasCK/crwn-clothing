@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ReactComponent as Logo } from "../../assets/crown.svg";
+import { ReactComponent as Logo } from "../assets/crown.svg";
 const Header = () => {
   return (
     <StyledHeader>
@@ -14,6 +14,9 @@ const Header = () => {
         </Link>
         <Link className="option" to="/contact">
           Contact
+        </Link>
+        <Link className="option" to="/signin">
+          Sign In
         </Link>
       </Options>
     </StyledHeader>
@@ -44,6 +47,9 @@ const Options = styled.div`
   & .option {
     text-transform: uppercase;
     padding: 10px 15px;
+    &:hover {
+      color: black;
+    }
   }
 `;
 

@@ -1,8 +1,16 @@
-import HomePage from "./pages/homepage/HomePage.component";
+import HomePage from "./pages/HomePage.component";
 import { Route, Switch } from "react-router-dom";
-import ShopPage from "./pages/shop/Shop.component";
+
+// Styles
 import "./App.css";
-import Header from "./components/header/Header.component";
+
+// Components
+import Header from "./components/Header.component";
+
+// Pages
+import Contact from "./pages/Contact.component";
+import SignInAndSignUpPage from "./pages/Sign-In-And-Sign-Up.component";
+import ShopPage from "./pages/Shop.component";
 
 function App() {
   return (
@@ -11,6 +19,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/signin" component={SignInAndSignUpPage} />
       </Switch>
     </div>
   );
