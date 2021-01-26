@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { signInWithGoogle } from "../Firebase/Firebase.utils";
+import CustomButton from "./Custom-button.component";
 import FormInput from "./Form-input.component";
 
 class SignIn extends React.Component {
@@ -14,7 +16,6 @@ class SignIn extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     this.setState({ email: "", password: "" });
   };
 
@@ -22,10 +23,11 @@ class SignIn extends React.Component {
     const { value, name } = e.target;
     this.setState({ [name]: value });
   };
+
   render() {
     return (
       <StyledSignIn>
-        <h2>I already have an account</h2>
+        <Title>I already have an account</Title>
         <span>Sign in with your email and password</span>
         <form onSubmit={this.handleSubmit}>
           <FormInput
@@ -44,7 +46,12 @@ class SignIn extends React.Component {
             label="Password"
             required
           />
-          <input type="submit" value="Submit Form" />
+          <Button>
+            <CustomButton type="submit">sign in</CustomButton>
+            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+              sign in with google
+            </CustomButton>
+          </Button>
         </form>
       </StyledSignIn>
     );
@@ -52,7 +59,18 @@ class SignIn extends React.Component {
 }
 
 const StyledSignIn = styled.div`
-  width: 30vw;
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Title = styled.h2`
+  margin: 10px 0;
+`;
+
+const Button = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export default SignIn;
