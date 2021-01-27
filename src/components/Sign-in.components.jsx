@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  signInWithGoogle,
-  signInWithFacebook,
-} from "../Firebase/Firebase.utils";
+import { auth, signInWithGoogle } from "../Firebase/Firebase.utils";
 import CustomButton from "./Custom-button.component";
 import FormInput from "./Form-input.component";
 
@@ -17,8 +14,18 @@ class SignIn extends React.Component {
     };
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
+
+    const { email, password } = this.state;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: "", password: "" });
+    } catch (error) {
+      alert(error);
+    }
+
     this.setState({ email: "", password: "" });
   };
 
@@ -51,7 +58,11 @@ class SignIn extends React.Component {
           />
           <Button>
             <CustomButton type="submit">sign in</CustomButton>
-            <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+            <CustomButton
+              type="button"
+              onClick={signInWithGoogle}
+              isGoogleSignIn
+            >
               sign in with google
             </CustomButton>
           </Button>

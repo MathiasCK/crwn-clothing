@@ -31,6 +31,11 @@ const Title = styled.h1`
 const Preview = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 50px 0;
+  /*display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column-gap: 3rem;
+  grid-row-gap: 5rem; */
 `;
 
 export default CollectionPreview;

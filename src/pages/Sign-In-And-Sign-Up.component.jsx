@@ -21,8 +21,13 @@ const SignInAndSignUpPage = () => {
 const SignInAndSignUp = styled.div`
   width: 850px;
   display: flex;
+  flex-direction: column !important;
   justify-content: space-between;
   margin: 30px auto;
+
+  @media (min-width: 1000px) {
+    flex-direction: row !important;
+  }
 `;
 
 export default SignInAndSignUpPage;
