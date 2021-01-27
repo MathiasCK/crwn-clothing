@@ -28,6 +28,7 @@ const StyledButton = styled.button`
   font-family: "Open Sans Condensed";
   font-weight: bolder;
   border: none;
+  outline: none;
   cursor: pointer;
 
   &:hover {

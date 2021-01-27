@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { signInWithGoogle } from "../Firebase/Firebase.utils";
+import {
+  signInWithGoogle,
+  signInWithFacebook,
+} from "../Firebase/Firebase.utils";
 import CustomButton from "./Custom-button.component";
 import FormInput from "./Form-input.component";
 

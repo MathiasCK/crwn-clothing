@@ -1,11 +1,110 @@
 import React from "react";
+import styled from "styled-components";
+import { createUserProfileDocument, auth } from "../Firebase/Firebase.utils";
+import CustomButton from "./Custom-button.component";
+import FormInput from "./Form-input.component";
 
-const SignUp = () => {
-  return (
-    <div>
-      <h1>Sign Up</h1>
-    </div>
-  );
-};
+class SignUp extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      displayName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    };
+  }
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { displayName, email, password, confirmPassword } = this.state;
+
+    if (password !== confirmPassword) {
+      alert("Password don't match");
+      return;
+    }
+
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      await createUserProfileDocument(user, { displayName });
+
+      this.setState({
+        displayName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  handleChange = (e) => {
+    const { name, value } = e.target;
+
+    this.setState({ [name]: value });
+  };
+
+  render() {
+    const { displayName, email, password, confirmPassword } = this.state;
+    return (
+      <StyledSignUp>
+        <Title>I do not have a account</Title>
+        <span>Sign Up with your email and password</span>
+        <form onSubmit={this.handleSubmit}>
+          <FormInput
+            type="text"
+            name="displayName"
+            value={displayName}
+            onChange={this.handleChange}
+            label="Display Name"
+            required
+          />
+          <FormInput
+            type="email"
+            name="email"
+            value={email}
+            onChange={this.handleChange}
+            label="Email"
+            required
+          />
+          <FormInput
+            type="password"
+            name="password"
+            value={password}
+            onChange={this.handleChange}
+            label="Password"
+            required
+          />
+          <FormInput
+            type="password"
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={this.handleChange}
+            label="Confirm Password"
+            required
+          />
+          <CustomButton type="submit">SIGN UP</CustomButton>
+        </form>
+      </StyledSignUp>
+    );
+  }
+}
+
+const StyledSignUp = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 308px;
+`;
+
+const Title = styled.h2`
+  margin: 10px 0;
+`;
 
 export default SignUp;

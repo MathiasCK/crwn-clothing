@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import CollectionPreview from "../components/Collection-Preveiw.component";
 import SHOP_DATA from "./Shop.data";
 
@@ -13,11 +14,16 @@ class ShopPage extends React.Component {
   render() {
     const { collections } = this.state;
     return (
-      <div className="shop-page">
-        {collections.map(({ id, ...otherCollectionProps }) => (
-          <CollectionPreview key={id} {...otherCollectionProps} />
-        ))}
-      </div>
+      <>
+        <Helmet>
+          <title>CRWN Clothing | Shop</title>
+        </Helmet>
+        <div className="shop-page">
+          {collections.map(({ id, ...otherCollectionProps }) => (
+            <CollectionPreview key={id} {...otherCollectionProps} />
+          ))}
+        </div>
+      </>
     );
   }
 }
