@@ -29,7 +29,7 @@ const StyledCollection = styled.div`
   //width: 22%;
   display: flex;
   flex-direction: column;
-  height: 350px;
+  min-height: 500px;
   align-items: center;
   position: relative;
   button {
