@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import CustomButton from "./Custom-button.component";
 
 const CollectionItem = ({ id, name, price, imageUrl }) => (
   <StyledCollection>
-    <Image
+    <div
+      className="image"
       style={{
         backgroundImage: `url(${imageUrl})`,
       }}
@@ -12,6 +14,7 @@ const CollectionItem = ({ id, name, price, imageUrl }) => (
       <span className="name">{name}</span>
       <span className="price">{price}</span>
     </CollectionFooter>
+    <CustomButton inverted>ADD TO CART</CustomButton>
   </StyledCollection>
 );
 
@@ -21,14 +24,32 @@ const StyledCollection = styled.div`
   flex-direction: column;
   height: 350px;
   align-items: center;
-`;
+  position: relative;
+  button {
+    width: 80%;
+    opacity: 0.7;
+    position: absolute;
+    top: 255px;
+    display: none;
+  }
 
-const Image = styled.div`
-  width: 100%;
-  height: 95%;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 5px;
+  .image {
+    width: 100%;
+    height: 95%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 5px;
+  }
+
+  &:hover {
+    .image {
+      opacity: 0.8;
+    }
+    button {
+      opacity: 0.85;
+      display: flex;
+    }
+  }
 `;
 
 const CollectionFooter = styled.div`
