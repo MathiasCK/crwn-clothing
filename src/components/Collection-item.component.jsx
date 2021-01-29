@@ -46,6 +46,7 @@ const StyledCollection = styled.div`
     background-size: cover;
     background-position: center;
     margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
   }
 
   &:hover {
