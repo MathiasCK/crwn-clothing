@@ -19,7 +19,7 @@ const SignInAndSignUpPage = () => {
 };
 
 const SignInAndSignUp = styled.div`
-  width: 850px;
+  /*width: 850px;
   display: flex;
   flex-direction: column !important;
   justify-content: space-between;
@@ -27,7 +27,12 @@ const SignInAndSignUp = styled.div`
 
   @media (min-width: 1000px) {
     flex-direction: row !important;
-  }
+  }*/
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column-gap: 2rem;
+  grid-row-gap: 5rem;
+  justify-items: center;
 `;
 
 export default SignInAndSignUpPage;
