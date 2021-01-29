@@ -3,6 +3,7 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectCurrentUser } from "./redux/user/user-selector";
+import { createStructuredSelector } from "reselect";
 
 // Styles
 import "./App.css";
@@ -16,6 +17,7 @@ import HomePage from "./pages/HomePage.component";
 import SignInAndSignUpPage from "./pages/Sign-In-And-Sign-Up.component";
 import ShopPage from "./pages/Shop.component";
 import { setCurrentUser } from "./redux/user/user.actions";
+import CheckoutPage from "./pages/Checkout.component";
 
 // Firebase
 import { auth, createUserProfileDocument } from "./Firebase/Firebase.utils";
@@ -54,6 +56,7 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
           <Route path="/contact" component={Contact} />
+          <Route exact path="/checkout" component={CheckoutPage} />
           <Route
             exact
             path="/signin"
