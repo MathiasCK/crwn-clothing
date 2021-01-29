@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import { ReactComponent as ShoppingIcon } from "../assets/shopping-bag.svg";
+import { toggleCartHidden } from "../redux/cart/cart.actions";
 
-const CartIcon = () => {
+const CartIcon = ({ toggleCartHidden }) => {
   return (
-    <StyledCartIcon>
+    <StyledCartIcon onClick={toggleCartHidden}>
       <ShoppingIcon className="shopping-icon" />
       <ItemCount className="item-count">0</ItemCount>
     </StyledCartIcon>
@@ -33,4 +35,8 @@ const ItemCount = styled.span`
   bottom: 12px;
 `;
 
-export default CartIcon;
+const mapDispatchToProps = (dispatch) => ({
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
+});
+
+export default connect(null, mapDispatchToProps)(CartIcon);
