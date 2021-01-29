@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import styled from "styled-components";
 import {
+  selectCartHidden,
   selectCartItems,
   selectCartItemsCount,
 } from "../redux/cart/cart.selectors";
@@ -46,8 +48,8 @@ const CartItems = styled.div`
   overflow-x: hidden;
 `;
 
-const mapStateToProps = (state) => ({
-  cartItems: selectCartItems(state),
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems,
 });
 
 export default connect(mapStateToProps)(CartDropDown);
