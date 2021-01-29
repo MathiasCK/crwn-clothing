@@ -36,7 +36,7 @@ const StyledCollection = styled.div`
     width: 80%;
     opacity: 0.7;
     position: absolute;
-    top: 255px;
+    top: 80%;
     display: none;
   }
 
