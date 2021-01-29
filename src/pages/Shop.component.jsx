@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import CollectionPreview from "../components/Collection-Preveiw.component";
+import CollectionPreview from "../components/Collection-preveiw.component";
 import SHOP_DATA from "./Shop.data";
 
 class ShopPage extends React.Component {

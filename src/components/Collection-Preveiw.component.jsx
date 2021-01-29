@@ -8,9 +8,9 @@ const CollectionPreview = ({ title, items }) => {
       <Title>{title.toUpperCase()}</Title>
       <Preview>
         {items
-          .filter((item, idx) => idx < 4)
-          .map(({ id, ...otherItemProps }) => (
-            <CollectionItem key={id} {...otherItemProps} />
+          .filter((items, idx) => idx < 6)
+          .map((item) => (
+            <CollectionItem key={item.id} item={item} />
           ))}
       </Preview>
     </StyledCollecion>
@@ -24,18 +24,19 @@ const StyledCollecion = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 28px;
-  margin-bottom: 25px;
+  font-size: 60px;
+  margin: 25px 0;
+  font-weight: lighter;
 `;
 
 const Preview = styled.div`
-  display: flex;
+  /*display: flex;
   justify-content: space-between;
-  margin: 50px 0;
-  /*display: grid;
+  margin: 50px 0;*/
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-column-gap: 3rem;
-  grid-row-gap: 5rem; */
+  grid-column-gap: 5rem;
+  grid-row-gap: 5rem;
 `;
 
 export default CollectionPreview;
