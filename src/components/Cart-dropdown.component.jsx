@@ -3,15 +3,12 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import styled from "styled-components";
-import {
-  selectCartHidden,
-  selectCartItems,
-  selectCartItemsCount,
-} from "../redux/cart/cart.selectors";
+import { selectCartItems } from "../redux/cart/cart.selectors";
 import CartItem from "./Cart-item.component";
 import CustomButton from "./Custom-button.component";
+import { toggleCartHidden } from "../redux/cart/cart.actions";
 
-const CartDropDown = ({ cartItems, history }) => {
+const CartDropDown = ({ cartItems, history, dispatch }) => {
   return (
     <StyledDropdown>
       <CartItems>
@@ -23,7 +20,12 @@ const CartDropDown = ({ cartItems, history }) => {
           <EmptyMessage>Your Cart Is Empty</EmptyMessage>
         )}
       </CartItems>
-      <CustomButton onClick={() => history.push("/checkout")}>
+      <CustomButton
+        onClick={() => {
+          history.push("/checkout");
+          dispatch(toggleCartHidden());
+        }}
+      >
         GO TO CHECKOUT
       </CustomButton>
     </StyledDropdown>
