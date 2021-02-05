@@ -45,6 +45,13 @@ const StyledButton = styled.button`
     color: black;
     border: 1px solid black;
   }
+  &:disabled,
+  button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+  }
 
   &.google-sign-in {
     background-color: #4285f4;
