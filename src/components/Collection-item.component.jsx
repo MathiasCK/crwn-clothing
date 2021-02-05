@@ -67,11 +67,9 @@ const CollectionFooter = styled.div`
   justify-content: space-between;
   font-size: 18px;
   & .name {
-    width: 90%;
     margin-bottom: 15px;
   }
   & .price {
-    width: 10%;
     margin-bottom: 15px;
   }
 `;
