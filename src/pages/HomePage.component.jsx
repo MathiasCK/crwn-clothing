@@ -1,12 +1,26 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import styled from "styled-components";
+import CustomButton from "../components/Custom-button.component";
 import Directory from "../components/Directory.component";
 
-const HomePage = () => {
+const HomePage = ({ history }) => {
   return (
-    <StyledHome>
-      <Directory />
-    </StyledHome>
+    <>
+      <Helmet>
+        <title>CRWN Clothing | Home</title>
+      </Helmet>
+      <StyledHome>
+        <Directory />
+        <CustomButton
+          onClick={() => {
+            history.push("/shop");
+          }}
+        >
+          ENTER SHOP
+        </CustomButton>
+      </StyledHome>
+    </>
   );
 };
 

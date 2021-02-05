@@ -8,7 +8,7 @@ const CollectionPreview = ({ title, items }) => {
       <Title>{title.toUpperCase()}</Title>
       <Preview>
         {items
-          .filter((items, idx) => idx < 10)
+          .filter((item, idx) => idx < 10)
           .map((item) => (
             <CollectionItem key={item.id} item={item} />
           ))}
@@ -35,8 +35,8 @@ const Preview = styled.div`
   margin: 50px 0;*/
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-column-gap: 5rem;
-  grid-row-gap: 5rem;
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
 `;
 
 export default CollectionPreview;
