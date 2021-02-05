@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CollectionItem from "./Collection-item.component";
 
-const CollectionPreview = ({ title, items }) => {
+const CollectionPreview = ({ title, items, routeName }) => {
   return (
     <StyledCollecion>
       <Title>{title.toUpperCase()}</Title>
@@ -10,7 +10,11 @@ const CollectionPreview = ({ title, items }) => {
         {items
           .filter((item, idx) => idx < 10)
           .map((item) => (
-            <CollectionItem key={item.id} item={item} />
+            <CollectionItem
+              key={item.id}
+              collectionId={routeName}
+              item={item}
+            />
           ))}
       </Preview>
     </StyledCollecion>
@@ -35,7 +39,7 @@ const Preview = styled.div`
   margin: 50px 0;*/
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-column-gap: 2rem;
+  grid-column-gap: 1rem;
   grid-row-gap: 2rem;
 `;
 

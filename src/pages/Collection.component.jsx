@@ -3,16 +3,17 @@ import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import styled from "styled-components";
 import CollectionItem from "../components/Collection-item.component";
-import { selectCollection } from "../redux/cart/shop/shop.selectors";
+import { selectCollection } from "../redux/shop/shop.selectors";
 
 const CollectionPage = ({ collection }) => {
-  const { title, items } = collection;
+  // HVER ENKELT COLLECTION
+  const { title, items, routeName } = collection;
   return (
     <StyledCollectionPage>
       <h2 className="title">{title}</h2>
       <div className="items">
         {items.map((item) => (
-          <CollectionItem key={item.id} item={item} />
+          <CollectionItem key={item.id} collectionId={routeName} item={item} />
         ))}
       </div>
     </StyledCollectionPage>
@@ -31,7 +32,7 @@ const StyledCollectionPage = styled.div`
   .items {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-column-gap: 2rem;
+    grid-column-gap: 1rem;
     grid-row-gap: 2rem;
 
     & .collection-item {

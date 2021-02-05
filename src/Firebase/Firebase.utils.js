@@ -38,16 +38,27 @@ export const createUserProfileDocument = async (userAuth, addidionalData) => {
 
 firebase.initializeApp(config);
 
+// STORE SHOP DATA IN FIREBASE
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+  objectsToAdd.forEach((obj) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+
+  return await batch.commit();
+};
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
-
-/*
-export const facebook = new firebase.auth.FacebookAuthProvider();
-facebook.setCustomParameters({ prompt: "select_account" });
-export const signInWithFacebook = () => auth.signInWithPopUpe(facebook);*/
 
 export default firebase;

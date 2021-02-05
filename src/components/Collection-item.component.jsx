@@ -2,25 +2,33 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { addItem } from "../redux/cart/cart.actions";
-import CustomButton from "./Custom-button.component";
+import { Link, useRouteMatch } from "react-router-dom";
 
-const CollectionItem = ({ item, addItem }) => {
-  const { name, price, imageUrl } = item;
+const CollectionItem = ({ item, addItem, collectionId }) => {
+  const { params } = useRouteMatch();
+
+  const { name, price, imageUrl, id } = item;
+  // HVER ENKELT ITEM I COLLECTION
   return (
     <StyledCollection>
-      <div
-        className="image"
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
-      />
+      <Link
+        style={{ width: "100%", height: "100%" }}
+        to={`/collections/${collectionId || params.collectionId}/${id}`}
+      >
+        <div
+          className="image"
+          style={{
+            backgroundImage: `url(${imageUrl})`,
+          }}
+          /*
+        src={`url(${imageUrl})`}
+        src1={`url(${imageUrl2})`}*/
+        />
+      </Link>
       <CollectionFooter>
         <span className="name">{name}</span>
-        <span className="price">NOK {price} ,-</span>
+        <span className="price">NOK {price} </span>
       </CollectionFooter>
-      <CustomButton onClick={() => addItem(item)} inverted>
-        ADD TO CART
-      </CustomButton>
     </StyledCollection>
   );
 };
@@ -29,23 +37,24 @@ const StyledCollection = styled.div`
   //width: 22vw;
   display: flex;
   flex-direction: column;
-  min-height: 500px;
+  min-height: 70vh;
   align-items: center;
   position: relative;
-  button {
+  /* button {
     width: 80%;
     opacity: 0.7;
     position: absolute;
-    top: 80%;
+    top: 75%;
+    left: 50%;
     display: none;
-  }
+    transform: translateX(-50%);
+  }*/
 
   .image {
     width: 100%;
-    height: 95%;
+    height: 90%;
     background-size: cover;
     background-position: center;
-    margin-bottom: 5px;
     transition: all 0.3s ease-in-out;
   }
 
@@ -53,25 +62,21 @@ const StyledCollection = styled.div`
     .image {
       opacity: 0.8;
     }
-    button {
+    /*button {
       opacity: 0.85;
       display: flex;
-    }
+    }*/
   }
 `;
 
 const CollectionFooter = styled.div`
   width: 100%;
-  height: 5%;
+  height: 10%;
   display: flex;
-  justify-content: space-between;
-  font-size: 18px;
-  & .name {
-    margin-bottom: 15px;
-  }
-  & .price {
-    margin-bottom: 15px;
-  }
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
 `;
 
 const mapDispatchToProps = (dispatch) => ({

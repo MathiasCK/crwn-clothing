@@ -12,9 +12,14 @@ html {
 
 body {
   font-family: "Open Sans Condensed", sans-serif;
-  padding: 20px 60px;
+  padding: 20px 0px;
   overflow: overlay;
   overflow-x: hidden;
+}
+@media (min-width: 600px) {
+  body {
+    padding: 20px 40px;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -35,4 +40,5 @@ body {
 a {
   text-decoration: none;
   color: #0c0c0c;
+  margin-bottom: 0px;
 }

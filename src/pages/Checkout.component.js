@@ -30,7 +30,7 @@ const CheckoutPage = ({ cartItems, total }) => {
         <CheckOutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <Total>
-        <span>TOTAL: {total} ,-</span>
+        <span>TOTAL: NOK {total}</span>
       </Total>
       <Warning>
         *Please use the following test credit card for payments*

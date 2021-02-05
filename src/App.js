@@ -18,13 +18,25 @@ import SignInAndSignUpPage from "./pages/Sign-In-And-Sign-Up.component";
 import ShopPage from "./pages/Shop.component";
 import { setCurrentUser } from "./redux/user/user.actions";
 import CheckoutPage from "./pages/Checkout.component";
+import ItemDetail from "./components/Item-detail.component";
 
 // Firebase
-import { auth, createUserProfileDocument } from "./Firebase/Firebase.utils";
+import {
+  auth,
+  createUserProfileDocument,
+  /*addCollectionAndDocuments, Add to firestore */
+} from "./Firebase/Firebase.utils";
+
+/* Selectors Add to Firestore
+import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";*/
 
 class App extends React.Component {
+  unsubscribeFromAuth = null;
+
   componentDidMount() {
-    const { setCurrentUser } = this.props;
+    const {
+      setCurrentUser /* Add to firestore collectionsArray*/,
+    } = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -39,10 +51,12 @@ class App extends React.Component {
       }
 
       setCurrentUser(userAuth);
+      addCollectionAndDocuments(
+        "collections",
+        collectionsArray.map(({ title, items }) => ({ title, items }))
+      );
     });
   }
-
-  unsubscribeFromAuth = null;
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
@@ -54,6 +68,7 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route path="/collections/:collection/:id" component={ItemDetail} />
           <Route path="/shop" component={ShopPage} />
           <Route path="/contact" component={Contact} />
           <Route exact path="/checkout" component={CheckoutPage} />
@@ -75,6 +90,7 @@ class App extends React.Component {
 }
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  // Add to Firestore collectionsArray: selectCollectionsForPreview,
 });
 
 const mapDispatchToProps = (dispatch) => ({
