@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import SignIn from "../components/Sign-in.components";
 import SignUp from "../components/Sign-up.component";
+import { motion } from "framer-motion";
+import { pageAnimation } from "../animations/animations";
 
 const SignInAndSignUpPage = () => {
   return (
@@ -10,7 +12,12 @@ const SignInAndSignUpPage = () => {
       <Helmet>
         <title>CRWN Clothing | Sign In</title>
       </Helmet>
-      <SignInAndSignUp>
+      <SignInAndSignUp
+        exit="exit"
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+      >
         <SignIn />
         <SignUp />
       </SignInAndSignUp>
@@ -18,7 +25,7 @@ const SignInAndSignUpPage = () => {
   );
 };
 
-const SignInAndSignUp = styled.div`
+const SignInAndSignUp = styled(motion.div)`
   /*width: 850px;
   display: flex;
   flex-direction: column !important;

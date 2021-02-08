@@ -16,16 +16,10 @@ const Directory = ({ sections }) => {
 };
 
 const DirectoryMenu = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-  /*
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-column-gap: 1rem;
-  grid-row-gap: 1rem;
-  */
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-column-gap: 0rem;
+  grid-row-gap: 0rem;
 `;
 
 const mapStateToProps = createStructuredSelector({

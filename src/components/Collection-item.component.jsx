@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { addItem } from "../redux/cart/cart.actions";
 import { Link, useRouteMatch } from "react-router-dom";
+import { addItem } from "../redux/cart/cart.actions";
 
-const CollectionItem = ({ item, addItem, collectionId }) => {
+const CollectionItem = ({ item, collectionId }) => {
   const { params } = useRouteMatch();
 
   const { name, price, imageUrl, id } = item;
@@ -13,7 +13,7 @@ const CollectionItem = ({ item, addItem, collectionId }) => {
     <StyledCollection>
       <Link
         style={{ width: "100%", height: "100%" }}
-        to={`/collections/${collectionId || params.collectionId}/${id}`}
+        to={`/shop/${collectionId || params.collectionId}/${id}`}
       >
         <div
           className="image"

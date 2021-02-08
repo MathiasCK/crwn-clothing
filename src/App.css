@@ -42,3 +42,9 @@ a {
   color: #0c0c0c;
   margin-bottom: 0px;
 }
+
+Link {
+  margin: auto;
+  width: max-content;
+  height: max-content;
+}

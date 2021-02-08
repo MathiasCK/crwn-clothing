@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => {
   return (
+    // Hjemmesiden
     <StyledMenu
       className={`${size}`}
       onClick={() => history.push(`${match.url}${linkUrl}`)}
@@ -24,13 +25,12 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => {
 
 const StyledMenu = styled.div`
   display: flex;
-  min-width: 30%;
-  height: 240px;
+  height: 350px;
   flex: 1 1 auto;
   align-items: center;
   justify-content: center;
   //border: 1px solid black;
-  margin: 0 7.5px 15px;
+  margin: 0.5rem;
   overflow: hidden;
   &:hover {
     cursor: pointer;
@@ -45,16 +45,16 @@ const StyledMenu = styled.div`
     }
   }
 
-  &.large {
+  /*&.large {
     height: 380px;
-  }
+  }*/
 
-  &:first-child {
+  /*&:first-child {
     margin-right: 7.5px;
   }
   &:last-child {
     margin-left: 7.5px;
-  }
+  }*/
   .background-image {
     width: 100%;
     height: 100%;

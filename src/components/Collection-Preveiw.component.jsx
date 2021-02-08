@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import CollectionItem from "./Collection-item.component";
+import { Link } from "react-router-dom";
 
 const CollectionPreview = ({ title, items, routeName }) => {
   return (
     <StyledCollecion>
-      <Title>{title.toUpperCase()}</Title>
+      <Link to="/">
+        <Title>{title.toUpperCase()}</Title>
+      </Link>
       <Preview>
         {items
           .filter((item, idx) => idx < 10)
@@ -31,6 +34,7 @@ const Title = styled.h1`
   font-size: 60px;
   margin: 25px 0;
   font-weight: lighter;
+  cursor: pointer;
 `;
 
 const Preview = styled.div`

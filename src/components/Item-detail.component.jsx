@@ -6,6 +6,9 @@ import CustomButton from "./Custom-button.component";
 import { addItem } from "../redux/cart/cart.actions";
 import { Helmet } from "react-helmet";
 
+import { motion } from "framer-motion";
+import { pageAnimation } from "../animations/animations";
+
 const ItemDetail = ({ addItem }) => {
   const match = useRouteMatch();
   console.log(match);
@@ -15,7 +18,12 @@ const ItemDetail = ({ addItem }) => {
   );
   console.log(item);
   return (
-    <StyledItemDetail>
+    <StyledItemDetail
+      exit="exit"
+      variants={pageAnimation}
+      initial="hidden"
+      animate="show"
+    >
       <Helmet>
         <title>CRWN Clothing | {item.name}</title>
       </Helmet>
@@ -41,9 +49,9 @@ const ItemDetail = ({ addItem }) => {
   );
 };
 
-const StyledItemDetail = styled.div`
+const StyledItemDetail = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   grid-column-gap: 1rem;
   grid-row-gap: 2rem;
   justify-items: center;
@@ -66,7 +74,9 @@ const Description = styled.div`
   }
 `;
 
-const Image = styled.div``;
+const Image = styled.div`
+  height: 100%;
+`;
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),

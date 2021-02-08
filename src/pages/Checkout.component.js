@@ -5,10 +5,17 @@ import styled from "styled-components";
 import CheckOutItem from "../components/Checkout-item.component";
 import StripeCheckoutButton from "../components/Stripe-button.component";
 import { selectCartItems, selectCartTotal } from "../redux/cart/cart.selectors";
+import { motion } from "framer-motion";
+import { pageAnimation } from "../animations/animations";
 
 const CheckoutPage = ({ cartItems, total }) => {
   return (
-    <StyledCheckout>
+    <StyledCheckout
+      exit="exit"
+      variants={pageAnimation}
+      initial="hidden"
+      animate="show"
+    >
       <Header>
         <div className="header-block">
           <span>Product</span>
@@ -42,7 +49,7 @@ const CheckoutPage = ({ cartItems, total }) => {
   );
 };
 
-const StyledCheckout = styled.div`
+const StyledCheckout = styled(motion.div)`
   width: 55%;
   min-height: 90vh;
   display: flex;

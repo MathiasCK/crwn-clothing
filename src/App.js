@@ -51,15 +51,15 @@ class App extends React.Component {
       }
 
       setCurrentUser(userAuth);
-      addCollectionAndDocuments(
+      /*addCollectionAndDocuments(
         "collections",
         collectionsArray.map(({ title, items }) => ({ title, items }))
-      );
+      );*/ //FIRESTORE;
     });
   }
 
   componentWillUnmount() {
-    this.unsubscribeFromAuth();
+    this.unsubscribeFromAuth(); // Stops talking to server
   }
 
   render() {
@@ -68,7 +68,7 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/collections/:collection/:id" component={ItemDetail} />
+          <Route path="/shop/:collection/:id" component={ItemDetail} />
           <Route path="/shop" component={ShopPage} />
           <Route path="/contact" component={Contact} />
           <Route exact path="/checkout" component={CheckoutPage} />
