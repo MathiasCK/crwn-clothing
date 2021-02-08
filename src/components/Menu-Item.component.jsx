@@ -30,7 +30,7 @@ const StyledMenu = styled.div`
   align-items: center;
   justify-content: center;
   //border: 1px solid black;
-  margin: 0.5rem;
+  margin: 0.1rem;
   overflow: hidden;
   &:hover {
     cursor: pointer;
