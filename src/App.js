@@ -10,6 +10,7 @@ import "./App.css";
 
 // Components
 import Header from "./components/Header.component";
+import Footer from "./components/Footer.component";
 
 // Pages
 import Contact from "./pages/Contact.component";
@@ -84,6 +85,7 @@ class App extends React.Component {
             }
           />
         </Switch>
+        {/*<Footer />*/}
       </div>
     );
   }

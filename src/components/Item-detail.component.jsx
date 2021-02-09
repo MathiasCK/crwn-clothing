@@ -9,6 +9,8 @@ import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../animations/animations";
 
+import { useHistory } from "react-router-dom";
+
 const ItemDetail = ({ addItem }) => {
   const match = useRouteMatch();
   console.log(match);
@@ -16,7 +18,9 @@ const ItemDetail = ({ addItem }) => {
   const item = shopData[match.params.collection].items.find(
     (item) => item.id === Number(match.params.id)
   );
-  console.log(item);
+
+  const history = useHistory();
+
   return (
     <StyledItemDetail
       exit="exit"
@@ -27,10 +31,12 @@ const ItemDetail = ({ addItem }) => {
       <Helmet>
         <title>CRWN Clothing | {item.name}</title>
       </Helmet>
-      <Image>
-        <img src={item.imageUrl} alt="" />
-      </Image>
-      {/*<img src={item.imageUrl2} alt="" />*/}
+      <Scroll>
+        <Image>
+          <img src={item.imageUrl} alt="" />
+          <img src={item.imageUrl2} alt="" />
+        </Image>
+      </Scroll>
       <Description>
         <h1>{item.name}</h1>
         <h3>NOK {item.price}</h3>
@@ -45,6 +51,7 @@ const ItemDetail = ({ addItem }) => {
           ADD TO CART
         </CustomButton>
       </Description>
+      <CustomButton onClick={() => history.goBack()}>Go Back</CustomButton>
     </StyledItemDetail>
   );
 };
@@ -57,25 +64,46 @@ const StyledItemDetail = styled(motion.div)`
   justify-items: center;
 `;
 
-const Description = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  h1 {
-  }
-  h3 {
-    font-weight: lighter;
-  }
-  .description {
-    width: 50%;
-  }
-  button {
-    width: 10%;
+const Image = styled.div`
+  height: 500px;
+  width: 50%;
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 `;
 
-const Image = styled.div`
-  height: 100%;
+const Scroll = styled.div`
+  min-height: 100vh;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const Description = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h1 {
+    margin-bottom: 2rem;
+  }
+  h3 {
+    font-weight: lighter;
+    margin-bottom: 2rem;
+  }
+  .description {
+    width: 50%;
+    margin-bottom: 2rem;
+  }
+  button {
+    width: 10%;
+    margin-top: 2rem;
+  }
 `;
 
 const mapDispatchToProps = (dispatch) => ({

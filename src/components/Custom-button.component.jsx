@@ -64,14 +64,14 @@ const StyledButton = styled.button`
   }
 
   &.inverted {
-    background-color: black;
-    color: white;
+    border: 1px solid black !important;
+    background-color: white;
+    color: black;
     border: none;
 
     &:hover {
-      background-color: white;
-      color: black;
-      border: 1px solid black;
+      background-color: black;
+      color: white;
     }
   }
 `;

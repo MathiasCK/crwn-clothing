@@ -7,7 +7,7 @@ import { addItem } from "../redux/cart/cart.actions";
 const CollectionItem = ({ item, collectionId }) => {
   const { params } = useRouteMatch();
 
-  const { name, price, imageUrl, id } = item;
+  const { name, price, imageUrl, id, imageUrl2 } = item;
   // HVER ENKELT ITEM I COLLECTION
   return (
     <StyledCollection>
@@ -15,14 +15,10 @@ const CollectionItem = ({ item, collectionId }) => {
         style={{ width: "100%", height: "100%" }}
         to={`/shop/${collectionId || params.collectionId}/${id}`}
       >
-        <div
+        <BackgroundImage
           className="image"
-          style={{
-            backgroundImage: `url(${imageUrl})`,
-          }}
-          /*
-        src={`url(${imageUrl})`}
-        src1={`url(${imageUrl2})`}*/
+          imageUrl={imageUrl}
+          imageUrl2={imageUrl2}
         />
       </Link>
       <CollectionFooter>
@@ -40,7 +36,8 @@ const StyledCollection = styled.div`
   min-height: 70vh;
   align-items: center;
   position: relative;
-  /* button {
+
+  .description {
     width: 80%;
     opacity: 0.7;
     position: absolute;
@@ -48,24 +45,21 @@ const StyledCollection = styled.div`
     left: 50%;
     display: none;
     transform: translateX(-50%);
-  }*/
-
-  .image {
-    width: 100%;
-    height: 90%;
-    background-size: cover;
-    background-position: center;
-    transition: all 0.3s ease-in-out;
+    color: black;
+    background: white;
+    padding: 0 1rem;
   }
 
   &:hover {
     .image {
-      opacity: 0.8;
+      //opacity: 0.8;
+      //transform: scale(1.1);
+      //transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     }
-    /*button {
+    .description {
       opacity: 0.85;
       display: flex;
-    }*/
+    }
   }
 `;
 
@@ -77,6 +71,24 @@ const CollectionFooter = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 20px;
+  margin: 1rem 0;
+`;
+
+const BackgroundImage = styled.div`
+  width: 100%;
+  height: 95%;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 5px;
+  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+  will-change: background-image;
+  ${({ imageUrl2 }) =>
+    imageUrl2
+      ? `&:hover {
+				cursor: pointer;
+		background-image: url('${imageUrl2}');
+	}`
+      : ""};
 `;
 
 const mapDispatchToProps = (dispatch) => ({

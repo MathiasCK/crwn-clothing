@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import styled from "styled-components";
-import CollectionItem from "../components/Collection-item.component";
-import { selectCollection } from "../redux/shop/shop.selectors";
+import CollectionItem from "../../components/Collection-item.component";
+import { selectCollection } from "../../redux/shop/shop.selectors";
 import { motion } from "framer-motion";
-import { pageAnimation } from "../animations/animations";
+import { pageAnimation } from "../../animations/animations";
 
 const CollectionPage = ({ collection }) => {
   // HVER ENKELT COLLECTION PÅ SHOP SIDEN
@@ -32,7 +32,8 @@ const StyledCollectionPage = styled(motion.div)`
   flex-direction: column;
 
   .title {
-    font-size: 38px;
+    font-size: 50px;
+    font-weight: lighter;
     margin: 0 auto 30px;
   }
 

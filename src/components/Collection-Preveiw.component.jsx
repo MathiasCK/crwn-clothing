@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import CollectionItem from "./Collection-item.component";
-import { Link } from "react-router-dom";
 
-const CollectionPreview = ({ title, items, routeName }) => {
+const CollectionPreview = ({ title, items, history, match, routeName }) => {
+  // HELE SHOP SIDEN
   return (
-    <StyledCollecion>
-      <Link to="/">
-        <Title>{title.toUpperCase()}</Title>
-      </Link>
+    <StyledPreview>
+      <Title onClick={() => history.push(`${match.path}/${routeName}`)}>
+        {title.toUpperCase()}
+      </Title>
       <Preview>
         {items
           .filter((item, idx) => idx < 10)
@@ -20,11 +20,11 @@ const CollectionPreview = ({ title, items, routeName }) => {
             />
           ))}
       </Preview>
-    </StyledCollecion>
+    </StyledPreview>
   );
 };
 
-const StyledCollecion = styled.div`
+const StyledPreview = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
