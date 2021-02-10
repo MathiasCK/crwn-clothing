@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "./Custom-button.component";
 import { addItem } from "../redux/cart/cart.actions";
 import { Helmet } from "react-helmet";
@@ -11,16 +11,18 @@ import { pageAnimation } from "../animations/animations";
 
 import { useHistory } from "react-router-dom";
 import { Spinner } from "./With-spinner.component";
-import { fetchCollectionsStartAsync } from "../redux/shop/shop.actions";
+import ShopActionTypes from "../redux/shop/shop.types";
 
-const ItemDetail = ({ addItem }) => {
+const ItemDetail = () => {
   const match = useRouteMatch();
   const history = useHistory();
   const shopData = useSelector((state) => state.shop.collections);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCollectionsStartAsync());
+    dispatch({
+      type: ShopActionTypes.FETCH_COLLECTIONS_START,
+    });
   }, []);
 
   if (!shopData) return <Spinner />;
@@ -53,7 +55,7 @@ const ItemDetail = ({ addItem }) => {
           <p className="description">{item.description}</p>
           <CustomButton
             onClick={() => {
-              addItem(item);
+              dispatch(addItem(item));
               alert(`${item.name} has been added to your cart!`);
             }}
             inverted
@@ -80,7 +82,7 @@ const StyledItemDetail = styled(motion.div)`
 
 const Image = styled.div`
   height: 500px;
-  width: 50%;
+  width: 100%;
   margin-bottom: 1rem;
   img {
     height: 100%;
@@ -131,8 +133,4 @@ const ButtonRow = styled.div`
   padding: 2rem 0;
 `;
 
-const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
-});
-
-export default connect(null, mapDispatchToProps)(ItemDetail);
+export default ItemDetail;

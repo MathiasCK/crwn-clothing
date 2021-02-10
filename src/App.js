@@ -17,7 +17,6 @@ import Contact from "./pages/Contact.component";
 import HomePage from "./pages/HomePage.component";
 import SignInAndSignUpPage from "./pages/Sign-In-And-Sign-Up.component";
 import ShopPage from "./pages/Shop.component";
-import { setCurrentUser } from "./redux/user/user.actions";
 import CheckoutPage from "./pages/Checkout.component";
 import ItemDetail from "./components/Item-detail.component";
 
@@ -35,11 +34,7 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const {
-      setCurrentUser /* Add to firestore collectionsArray*/,
-    } = this.props;
-
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    /*this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
@@ -52,11 +47,12 @@ class App extends React.Component {
       }
 
       setCurrentUser(userAuth);
-      /*addCollectionAndDocuments(
+      addCollectionAndDocuments(
         "collections",
         collectionsArray.map(({ title, items }) => ({ title, items }))
-      );*/ //FIRESTORE;
+      ); //FIRESTORE;
     });
+    */
   }
 
   componentWillUnmount() {
@@ -85,7 +81,7 @@ class App extends React.Component {
             }
           />
         </Switch>
-        {/*<Footer />*/}
+        <Footer />
       </div>
     );
   }
@@ -95,8 +91,4 @@ const mapStateToProps = createStructuredSelector({
   // Add to Firestore collectionsArray: selectCollectionsForPreview,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
