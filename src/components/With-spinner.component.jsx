@@ -14,6 +14,12 @@ const WithSpinner = (WrappedComponent) => {
   return Spinner;
 };
 
+export const Spinner = () => (
+  <SpinnerOverlay>
+    <SpinnerContainer />
+  </SpinnerOverlay>
+);
+
 const SpinnerOverlay = styled.div`
   height: 60vh;
   width: 100%;

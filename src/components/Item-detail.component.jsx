@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
-import { connect, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import CustomButton from "./Custom-button.component";
 import { addItem } from "../redux/cart/cart.actions";
 import { Helmet } from "react-helmet";
@@ -10,49 +10,62 @@ import { motion } from "framer-motion";
 import { pageAnimation } from "../animations/animations";
 
 import { useHistory } from "react-router-dom";
+import { Spinner } from "./With-spinner.component";
+import { fetchCollectionsStartAsync } from "../redux/shop/shop.actions";
 
 const ItemDetail = ({ addItem }) => {
   const match = useRouteMatch();
-  console.log(match);
+  const history = useHistory();
   const shopData = useSelector((state) => state.shop.collections);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCollectionsStartAsync());
+  }, []);
+
+  if (!shopData) return <Spinner />;
   const item = shopData[match.params.collection].items.find(
     (item) => item.id === Number(match.params.id)
   );
 
-  const history = useHistory();
-
   return (
-    <StyledItemDetail
-      exit="exit"
-      variants={pageAnimation}
-      initial="hidden"
-      animate="show"
-    >
-      <Helmet>
-        <title>CRWN Clothing | {item.name}</title>
-      </Helmet>
-      <Scroll>
-        <Image>
-          <img src={item.imageUrl} alt="" />
-          <img src={item.imageUrl2} alt="" />
-        </Image>
-      </Scroll>
-      <Description>
-        <h1>{item.name}</h1>
-        <h3>NOK {item.price}</h3>
-        <p className="description">{item.description}</p>
-        <CustomButton
-          onClick={() => {
-            addItem(item);
-            alert(`${item.name} has been added to your cart!`);
-          }}
-          inverted
-        >
-          ADD TO CART
-        </CustomButton>
-      </Description>
-      <CustomButton onClick={() => history.goBack()}>Go Back</CustomButton>
-    </StyledItemDetail>
+    <div>
+      <StyledItemDetail
+        exit="exit"
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+      >
+        <Helmet>
+          <title>CRWN Clothing | {item.name}</title>
+        </Helmet>
+        <Scroll>
+          <Image>
+            <img src={item.imageUrl} alt="" />
+          </Image>
+          <Image>
+            <img src={item.imageUrl2} alt="" />
+          </Image>
+        </Scroll>
+        <Description>
+          <h1>{item.name}</h1>
+          <h3>NOK {item.price}</h3>
+          <p className="description">{item.description}</p>
+          <CustomButton
+            onClick={() => {
+              addItem(item);
+              alert(`${item.name} has been added to your cart!`);
+            }}
+            inverted
+          >
+            ADD TO CART
+          </CustomButton>
+        </Description>
+      </StyledItemDetail>
+      <ButtonRow>
+        <CustomButton onClick={() => history.goBack()}>Go Back</CustomButton>
+      </ButtonRow>
+    </div>
   );
 };
 
@@ -62,11 +75,13 @@ const StyledItemDetail = styled(motion.div)`
   grid-column-gap: 1rem;
   grid-row-gap: 2rem;
   justify-items: center;
+  min-height: 90vh;
 `;
 
 const Image = styled.div`
   height: 500px;
   width: 50%;
+  margin-bottom: 1rem;
   img {
     height: 100%;
     width: 100%;
@@ -75,17 +90,21 @@ const Image = styled.div`
 `;
 
 const Scroll = styled.div`
-  min-height: 100vh;
-  overflow-y: scroll;
+  /* max-height: 90vh; */
+  /* overflow-y: scroll; */
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   ::-webkit-scrollbar {
     display: none;
   }
 `;
 
 const Description = styled.div`
-  height: 100vh;
+  position: sticky;
+  top: 5rem;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,6 +123,12 @@ const Description = styled.div`
     width: 10%;
     margin-top: 2rem;
   }
+`;
+
+const ButtonRow = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
 `;
 
 const mapDispatchToProps = (dispatch) => ({

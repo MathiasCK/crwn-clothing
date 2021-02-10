@@ -45,11 +45,11 @@ const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 40px;
-  /*position: fixed;
+  position: sticky;
   z-index: 10;
   background: white;
   top: 0;
-  left: 0;*/
+  left: 0;
   & .logo-container {
     height: 100%;
     width: 70px;

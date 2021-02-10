@@ -3,11 +3,10 @@ import logger from "redux-logger";
 import rootReducer from "./root-reducer";
 import { persistStore } from "redux-persist"; // Make Cart Items stay in cart whenever the page is refreshing
 import createSagaMiddleware from "redux-saga";
-import thunk from "redux-thunk";
 
 const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [thunk];
+const middlewares = [sagaMiddleware];
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
