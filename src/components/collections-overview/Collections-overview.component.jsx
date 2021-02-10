@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import styled from "styled-components";
@@ -6,7 +7,6 @@ import selectCollectionsForPreview from "../../redux/shop/shop.selectors";
 import CollectionPreview from "../Collection-preveiw.component";
 
 const CollectionsOverview = ({ collections }) => {
-  console.log("COLLECTIONS" + collections);
   return (
     <StyledCollections>
       {collections.map(({ id, ...otherCollectionProps }) => (

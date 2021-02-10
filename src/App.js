@@ -26,6 +26,7 @@ import {
   createUserProfileDocument,
   /*addCollectionAndDocuments, Add to firestore */
 } from "./Firebase/Firebase.utils";
+import { checkUserSession } from "./redux/user/user.actions";
 
 /* Selectors Add to Firestore
 import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";*/
@@ -34,29 +35,12 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    /*this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
-        });
-      }
-
-      setCurrentUser(userAuth);
-      addCollectionAndDocuments(
-        "collections",
-        collectionsArray.map(({ title, items }) => ({ title, items }))
-      ); //FIRESTORE;
-    });
-    */
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   componentWillUnmount() {
-    this.unsubscribeFromAuth(); // Stops talking to server
+    this.unsubscribeFromAuth();
   }
 
   render() {
@@ -91,4 +75,8 @@ const mapStateToProps = createStructuredSelector({
   // Add to Firestore collectionsArray: selectCollectionsForPreview,
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(checkUserSession()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
