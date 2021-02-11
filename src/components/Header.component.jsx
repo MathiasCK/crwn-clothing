@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/crown.svg";
-import { auth } from "../Firebase/Firebase.utils";
 import { connect } from "react-redux";
 import CartIcon from "./Cart-icon.component";
 import CartDropDown from "./Cart-dropdown.component";
