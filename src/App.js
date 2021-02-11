@@ -1,5 +1,5 @@
 // Utils
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectCurrentUser } from "./redux/user/user-selector";
@@ -20,59 +20,38 @@ import ShopPage from "./pages/Shop.component";
 import CheckoutPage from "./pages/Checkout.component";
 import ItemDetail from "./components/Item-detail.component";
 
-// Firebase
-import {
-  auth,
-  createUserProfileDocument,
-  /*addCollectionAndDocuments, Add to firestore */
-} from "./Firebase/Firebase.utils";
+// Redux
 import { checkUserSession } from "./redux/user/user.actions";
 
-/* Selectors Add to Firestore
-import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";*/
-
-class App extends React.Component {
-  unsubscribeFromAuth = null;
-
-  componentDidMount() {
-    const { checkUserSession } = this.props;
+const App = ({ checkUserSession, currentUser }) => {
+  useEffect(() => {
     checkUserSession();
-  }
+  }, [checkUserSession]);
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+  return (
+    <div>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/shop/:collection/:id" component={ItemDetail} />
+        <Route path="/shop" component={ShopPage} />
+        <Route path="/contact" component={Contact} />
+        <Route exact path="/checkout" component={CheckoutPage} />
+        <Route
+          exact
+          path="/signin"
+          render={() =>
+            currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
+          }
+        />
+      </Switch>
+      <Footer />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop/:collection/:id" component={ItemDetail} />
-          <Route path="/shop" component={ShopPage} />
-          <Route path="/contact" component={Contact} />
-          <Route exact path="/checkout" component={CheckoutPage} />
-          <Route
-            exact
-            path="/signin"
-            render={() =>
-              this.props.currentUser ? (
-                <Redirect to="/" />
-              ) : (
-                <SignInAndSignUpPage />
-              )
-            }
-          />
-        </Switch>
-        <Footer />
-      </div>
-    );
-  }
-}
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  // Add to Firestore collectionsArray: selectCollectionsForPreview,
 });
 
 const mapDispatchToProps = (dispatch) => ({
