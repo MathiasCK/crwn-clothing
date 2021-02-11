@@ -9,9 +9,12 @@ import CustomButton from "./Custom-button.component";
 import FormInput from "./Form-input.component";
 
 const SignIn = ({ emailSignInStart, googleSignInStart }) => {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [userCredentials, setUserCredentials] = useState({
+    email: "",
+    password: "",
+  });
 
-  const { email, password } = credentials;
+  const { email, password } = userCredentials;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,10 +23,8 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setCredentials({ ...credentials, [name]: value });
+    setUserCredentials({ ...userCredentials, [name]: value });
   };
-
-  const 
 
   return (
     <StyledSignIn>
