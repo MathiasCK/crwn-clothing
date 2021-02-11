@@ -1,10 +1,12 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+import { useHistory, useRouteMatch } from "react-router";
 import styled from "styled-components";
 import CollectionItem from "./Collection-item.component";
 
-const CollectionPreview = ({ title, items, history, match, routeName }) => {
+const CollectionPreview = ({ title, items, routeName }) => {
   // HELE SHOP SIDEN
+  const history = useHistory();
+  const match = useRouteMatch();
   return (
     <StyledPreview>
       <Title onClick={() => history.push(`${match.path}/${routeName}`)}>

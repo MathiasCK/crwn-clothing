@@ -9,6 +9,7 @@ import { pageAnimation } from "../../animations/animations";
 
 const CollectionPage = ({ collection }) => {
   // HVER ENKELT COLLECTION PÅ SHOP SIDEN
+
   const { title, items, routeName } = collection;
   return (
     <StyledCollectionPage

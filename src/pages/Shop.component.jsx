@@ -13,7 +13,8 @@ import { fetchCollectionsStart } from "../redux/shop/shop.actions";
 const ShopPage = ({ fetchCollectionsStart, match }) => {
   useEffect(() => {
     fetchCollectionsStart();
-  });
+  }, [fetchCollectionsStart]);
+
   return (
     <motion.div
       exit="exit"

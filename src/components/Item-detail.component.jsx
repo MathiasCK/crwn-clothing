@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import CustomButton from "./Custom-button.component";
 import { addItem } from "../redux/cart/cart.actions";
 import { Helmet } from "react-helmet";
@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 import { Spinner } from "./With-spinner.component";
 import ShopActionTypes from "../redux/shop/shop.types";
 
-const ItemDetail = () => {
+const ItemDetail = ({ title, items }) => {
   const match = useRouteMatch();
   const history = useHistory();
   const shopData = useSelector((state) => state.shop.collections);
@@ -26,9 +26,14 @@ const ItemDetail = () => {
   }, []);
 
   if (!shopData) return <Spinner />;
-  const item = shopData[match.params.collection].items.find(
+
+  const collection = shopData[match.params.collection];
+
+  const item = collection.items.find(
     (item) => item.id === Number(match.params.id)
   );
+
+  if (!item || !collection) return null;
 
   return (
     <div>
@@ -64,6 +69,18 @@ const ItemDetail = () => {
           </CustomButton>
         </Description>
       </StyledItemDetail>
+      {/*<OtherItems>
+        <h1>Other items</h1>
+        {collection.items
+          .filter((item, idx) => idx < 4)
+          .map((item) => {
+            return (
+              <Preview>
+                <img src={item.imageUrl} />;
+              </Preview>
+            );
+          })}
+        </OtherItems>*/}
       <ButtonRow>
         <CustomButton onClick={() => history.goBack()}>Go Back</CustomButton>
       </ButtonRow>
@@ -129,7 +146,20 @@ const Description = styled.div`
   }
 `;
 
+const OtherItems = styled.div`
+  margin-top: 100px;
+  height: 30vh;
+`;
+const Preview = styled.div`
+  display: flex;
+  width: 100%;
+  img {
+    max-width: 25%;
+  }
+`;
+
 const ButtonRow = styled.div`
+  margin-top: 200px;
   display: flex;
   justify-content: center;
   padding: 2rem 0;
