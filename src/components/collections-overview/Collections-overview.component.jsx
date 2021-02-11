@@ -18,6 +18,7 @@ const CollectionsOverview = ({ collections }) => {
 const StyledCollections = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 50px;
 `;
 
 const mapStateToProps = createStructuredSelector({

@@ -56,6 +56,7 @@ const StyledCheckout = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
+  padding-top: 80px;
 `;
 
 const Header = styled.div`

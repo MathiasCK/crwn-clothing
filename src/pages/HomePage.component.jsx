@@ -33,7 +33,9 @@ const HomePage = ({ history }) => {
   );
 };
 
-const StyledHome = styled(motion.div)``;
+const StyledHome = styled(motion.div)`
+  padding-top: 80px;
+`;
 
 const Button = styled.div`
   display: flex;

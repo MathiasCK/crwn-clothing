@@ -40,6 +40,7 @@ const SignInAndSignUp = styled(motion.div)`
   grid-column-gap: 2rem;
   grid-row-gap: 5rem;
   justify-items: center;
+  padding-top: 80px;
 `;
 
 export default SignInAndSignUpPage;

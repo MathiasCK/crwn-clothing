@@ -47,7 +47,7 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   margin-bottom: 40px;
   padding: 0 1rem;
-  /*position: fixed;*/
+  position: fixed;
   z-index: 10;
   background: white;
   top: 0;

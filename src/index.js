@@ -9,12 +9,16 @@ import { store, persistor } from "./redux/store";
 
 import { PersistGate } from "redux-persist/integration/react";
 
+import ScrollToTop from "./components/Scroll-top.component";
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <PersistGate persistor={persistor}>
         {/*Cart Items stay when refreshed*/}
-        <App />
+        <ScrollToTop>
+          <App />
+        </ScrollToTop>
       </PersistGate>
     </BrowserRouter>
   </Provider>,
