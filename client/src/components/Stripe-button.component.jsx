@@ -3,13 +3,15 @@ import StripeCheckout from "react-stripe-checkout";
 import CustomButton from "./Custom-button.component";
 import axios from "axios";
 
+const serverURL = process.env.NODE_ENV === "development" ? "/" : "/api/";
+
 const StripeCheckoutButton = ({ price }) => {
   const priceForStripe = price * 100;
   const publishableKey =
     "pk_test_51IHS8SAkxwsxxcnkwLeWPnVkUo18pRARyYpcsm1yPfZ584DsAEUE3VyTWn3j9Frb7Ju8YsfNx3ZSGOpnokpGDEXx00wMVEBCQE";
   const onToken = async (token) => {
     axios({
-      url: "payment",
+      url: `${serverURL}payment`,
       method: "post",
       data: {
         amount: priceForStripe,
