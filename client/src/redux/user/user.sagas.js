@@ -24,7 +24,6 @@ export function* getSnapShotFromUserAuth(userAuth, additionalData) {
     );
     const userSnapshot = yield userRef.get();
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data }));
-    yield alert("You've successfully signed in!");
   } catch (error) {
     yield put(signInFailure(error));
   }
@@ -75,7 +74,6 @@ export function* signInAfterSignUp({ payload: { user, additionalData } }) {
 
 export function* onSignUpSuccess() {
   yield takeLatest(userActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
-  yield alert("You've successfully signed in!");
 }
 
 export function* isUserAuthenticated() {
