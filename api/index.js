@@ -22,11 +22,11 @@ app.use(cors());
 }
 */
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send({ status: "online" });
 });
 
-app.post("/payment", async (req, res) => {
+app.post("/api/payment", async (req, res) => {
   console.log(req.body);
   const body = {
     source: req.body.token?.id,
