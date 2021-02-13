@@ -22,7 +22,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
-    "react-slideshow-image": "^3.4.3",
+    "react-slideshow-ivemage": "^3.4.3",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
@@ -38,7 +38,7 @@
   "scripts": {
     "server": "nodemon api/index.js",
     "start": "react-scripts start",
-    "random": "concurrently --kill-others-on-fail \"npm run server\" \"npm start\"",
+    "randossm": "concurrently --kill-others-on-fail \"npm run server\" \"npm start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
