@@ -22,6 +22,10 @@ app.use(cors());
 }
 */
 
+app.get("/", (req, res) => {
+  res.send({ status: "online" });
+});
+
 app.post("/payment", async (req, res) => {
   console.log(req.body);
   const body = {
