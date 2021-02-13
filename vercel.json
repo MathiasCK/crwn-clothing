@@ -1,3 +1,4 @@
 {
+  "buiids": [{ "src": "api/index.js", "use": "@vercel/node" }],
   "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
 }
