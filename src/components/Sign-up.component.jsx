@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { createUserProfileDocument, auth } from "../Firebase/Firebase.utils";
 import { signUpStart } from "../redux/user/user.actions";
 import CustomButton from "./Custom-button.component";
 import FormInput from "./Form-input.component";
