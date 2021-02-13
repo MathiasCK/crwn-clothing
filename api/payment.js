@@ -61,7 +61,7 @@ if (process.env.NODE_ENV === "development") {
 
 module.exports = app;*/
 
-import Stripe from "stripe";
+const Stripe = require("stripe");
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
