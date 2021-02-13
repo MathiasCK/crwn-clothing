@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
 
@@ -22,11 +21,6 @@ app.use(cors());
   });
 }
 */
-
-app.listen(port, (error) => {
-  if (error) throw error;
-  console.log("Server running on port " + port);
-});
 
 app.post("/payment", async (req, res) => {
   console.log(req.body);
@@ -53,3 +47,12 @@ app.post("/payment", async (req, res) => {
     }
   });*/
 });
+
+if (process.env.NODE_ENV === "development") {
+  app.listen(port, (error) => {
+    if (error) throw error;
+    console.log("Server running on port " + port);
+  });
+}
+
+module.exports = app;
