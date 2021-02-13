@@ -1,4 +1,4 @@
-const express = require("express");
+/*const express = require("express");
 const cors = require("cors");
 
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
@@ -20,7 +20,7 @@ app.use(cors());
     res.sendFile(path.join(__dirname, "client/build", "index.html"));
   });
 }
-*/
+
 
 app.get("/api", (req, res) => {
   res.send({ status: "online" });
@@ -43,13 +43,13 @@ app.post("/api/payment", async (req, res) => {
     res.status(400).send(error.message);
   }
 
-  /*stripe.charges.create(body, (stripeErr, stripeRes) => {
+  stripe.charges.create(body, (stripeErr, stripeRes) => {
     if (stripeErr) {
       res.status(400).send({ error: stripeErr });
     } else {
       res.status(200).send({ success: stripeRes });
     }
-  });*/
+  });
 });
 
 if (process.env.NODE_ENV === "development") {
@@ -59,4 +59,29 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
-module.exports = app;
+module.exports = app;*/
+
+import Stripe from "stripe";
+
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+
+export default async (req, res) => {
+  if (req.method !== "POST") {
+    console.log("bad request");
+    return res.status(400).send("Bad request");
+  }
+  const body = {
+    source: req.body.token?.id,
+    amount: req.body.amount,
+    currency: "NOK",
+    description: "Learning React",
+  };
+
+  try {
+    const charge = await stripe.charges.create(body);
+    res.send({ success: charge });
+  } catch (error) {
+    console.error(error);
+    res.status(400).send(error.message);
+  }
+};
