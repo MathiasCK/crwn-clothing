@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "./Custom-button.component";
 import { addItem } from "../redux/cart/cart.actions";
 import { Helmet } from "react-helmet";
@@ -23,7 +23,7 @@ const ItemDetail = ({ title, items }) => {
     dispatch({
       type: ShopActionTypes.FETCH_COLLECTIONS_START,
     });
-  }, []);
+  }, [dispatch]);
 
   if (!shopData) return <Spinner />;
 
@@ -145,7 +145,7 @@ const Description = styled.div`
     margin-top: 2rem;
   }
 `;
-
+/*
 const OtherItems = styled.div`
   margin-top: 100px;
   height: 30vh;
@@ -156,7 +156,7 @@ const Preview = styled.div`
   img {
     max-width: 25%;
   }
-`;
+`;*/
 
 const ButtonRow = styled.div`
   margin-top: 200px;
