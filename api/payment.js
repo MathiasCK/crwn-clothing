@@ -65,7 +65,7 @@ const Stripe = require("stripe");
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
-export default async (req, res) => {
+module.exports = async (req, res) => {
   if (req.method !== "POST") {
     console.log("bad request");
     return res.status(400).send("Bad request");
