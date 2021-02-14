@@ -44,7 +44,7 @@ const ItemDetail = ({ title, items }) => {
         animate="show"
       >
         <Helmet>
-          <title>CRWN Clothing | {item.name}</title>
+          <title>CRWN Apperal | {item.name}</title>
         </Helmet>
         <Scroll>
           <Image>

@@ -23,7 +23,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
       animate="show"
     >
       <Helmet>
-        <title>CRWN Clothing | Shop</title>
+        <title>CRWN Apperal | Shop</title>
       </Helmet>
       <div className="shop-page">
         <Route

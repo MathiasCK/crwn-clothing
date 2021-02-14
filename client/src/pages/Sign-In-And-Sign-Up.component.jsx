@@ -10,7 +10,7 @@ const SignInAndSignUpPage = () => {
   return (
     <>
       <Helmet>
-        <title>CRWN Clothing | Sign In</title>
+        <title>CRWN Apperal | Sign In</title>
       </Helmet>
       <SignInAndSignUp
         exit="exit"

@@ -15,7 +15,7 @@ const HomePage = ({ history }) => {
       animate="show"
     >
       <Helmet>
-        <title>CRWN Clothing | Home</title>
+        <title>CRWN Apperal | Home</title>
       </Helmet>
       <StyledHome>
         <Directory />
