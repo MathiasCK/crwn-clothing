@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "./Custom-button.component";
@@ -82,7 +82,7 @@ const ItemDetail = ({ title, items }) => {
           })}
         </OtherItems>*/}
       <ButtonRow>
-        <CustomButton onClick={() => history.goBack()}>Go Back</CustomButton>
+        <Link onClick={() => history.goBack()}>Go Back</Link>
       </ButtonRow>
     </div>
   );
@@ -129,6 +129,7 @@ const Description = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   h1 {
     margin-bottom: 2rem;
   }
@@ -163,6 +164,9 @@ const ButtonRow = styled.div`
   display: flex;
   justify-content: center;
   padding: 2rem 0;
+  a {
+    font-size: 2rem;
+  }
 `;
 
 export default ItemDetail;

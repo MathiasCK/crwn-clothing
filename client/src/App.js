@@ -22,6 +22,7 @@ import ItemDetail from "./components/Item-detail.component";
 
 // Redux
 import { checkUserSession } from "./redux/user/user.actions";
+import SideNav from "./components/Side.header.component";
 
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
@@ -31,6 +32,7 @@ const App = ({ checkUserSession, currentUser }) => {
   return (
     <div>
       <Header />
+      <SideNav />
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop/:collection/:id" component={ItemDetail} />
