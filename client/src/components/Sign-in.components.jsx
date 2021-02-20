@@ -63,10 +63,10 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
 };
 
 const StyledSignIn = styled.div`
-  @media (min-width: 911px) {
+  @media (min-width: 560px) {
     width: 380px;
   }
-  max-width: 500px;
+  width: 90%;
   display: flex;
   flex-direction: column;
 `;

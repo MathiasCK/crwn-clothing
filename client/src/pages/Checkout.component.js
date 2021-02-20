@@ -16,7 +16,7 @@ const CheckoutPage = ({ cartItems, total }) => {
       initial="hidden"
       animate="show"
     >
-      <Header>
+      {/*<Header>
         <div className="header-block">
           <span>Product</span>
         </div>
@@ -32,25 +32,34 @@ const CheckoutPage = ({ cartItems, total }) => {
         <div className="header-block">
           <span>Remove</span>
         </div>
-      </Header>
+      </Header>*/}
       {cartItems.map((cartItem) => (
         <CheckOutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      <Total>
-        <span>TOTAL: NOK {total}</span>
-      </Total>
-      <Warning>
-        *Please use the following test credit card for payments*
-        <br />
-        4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
-      </Warning>
-      <StripeCheckoutButton price={total} />
+      {cartItems.length ? (
+        <div>
+          <Total>
+            <span>TOTAL: NOK {total}</span>
+            <StripeCheckoutButton price={total} />
+          </Total>
+          <Warning>
+            *Please use the following test credit card for payments*
+            <br />
+            4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
+          </Warning>
+        </div>
+      ) : (
+        <h3>Your cart is empty, nothing to see here</h3>
+      )}
     </StyledCheckout>
   );
 };
 
 const StyledCheckout = styled(motion.div)`
-  width: 55%;
+  @media (min-width: 560px) {
+    width: 75%;
+  }
+  width: 100%;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -76,9 +85,19 @@ const Header = styled.div`
 `;
 
 const Total = styled.div`
+  @media (min-width: 685px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
   margin-top: 30px;
-  margin-left: auto;
   font-size: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  span {
+    margin-bottom: 1rem;
+  }
 `;
 
 const mapStateToProps = createStructuredSelector({
