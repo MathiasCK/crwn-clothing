@@ -54,7 +54,7 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
             onClick={googleSignInStart}
             isGoogleSignIn
           >
-            sign in with google
+            google
           </CustomButton>
         </Button>
       </form>
@@ -63,7 +63,10 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
 };
 
 const StyledSignIn = styled.div`
-  width: 380px;
+  @media (min-width: 911px) {
+    width: 380px;
+  }
+  max-width: 500px;
   display: flex;
   flex-direction: column;
 `;
@@ -73,8 +76,20 @@ const Title = styled.h2`
 `;
 
 const Button = styled.div`
+  @media (min-width: 911px) {
+    flex-direction: row;
+    button {
+      width: 100%;
+    }
+  }
+  flex-direction: column;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  button {
+    margin: 1rem 0;
+    width: 50%;
+  }
 `;
 
 const mapDispatchToProps = (dispatch) => ({

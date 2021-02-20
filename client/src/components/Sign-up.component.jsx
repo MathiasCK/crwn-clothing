@@ -68,16 +68,21 @@ const SignUp = ({ signUpStart }) => {
           label="Confirm Password"
           required
         />
-        <CustomButton type="submit">SIGN UP</CustomButton>
+        <center>
+          <CustomButton type="submit">SIGN UP</CustomButton>
+        </center>
       </form>
     </StyledSignUp>
   );
 };
 
 const StyledSignUp = styled.div`
+  @media (min-width: 911px) {
+    width: 380px;
+  }
+  max-width: 500px;
   display: flex;
   flex-direction: column;
-  width: 308px;
 `;
 
 const Title = styled.h2`

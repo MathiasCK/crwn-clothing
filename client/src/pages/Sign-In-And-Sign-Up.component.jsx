@@ -36,7 +36,7 @@ const SignInAndSignUp = styled(motion.div)`
     flex-direction: row !important;
   }*/
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-column-gap: 2rem;
   grid-row-gap: 5rem;
   justify-items: center;
