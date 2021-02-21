@@ -34,6 +34,7 @@ const App = ({ checkUserSession, currentUser }) => {
       <Header />
       <SideNav />
       <Switch>
+        <Route path="/404" component={404} />
         <Route exact path="/" component={HomePage} />
         <Route path="/shop/:collection/:id" component={ItemDetail} />
         <Route path="/shop" component={ShopPage} />
@@ -47,7 +48,7 @@ const App = ({ checkUserSession, currentUser }) => {
           }
         />
       </Switch>
-      <Footer />
+      {/* <Footer />*/}
     </div>
   );
 };

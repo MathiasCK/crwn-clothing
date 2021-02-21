@@ -39,6 +39,7 @@ const StyledCheckoutItem = styled.div`
     flex-direction: row;
     .image-container {
       padding-right: 5rem;
+      width: 50%;
     }
   }
 
@@ -50,13 +51,14 @@ const StyledCheckoutItem = styled.div`
   padding: 15px 0;
   font-size: 20px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   .image-container {
-    width: 50%;
-    height: auto;
-    object-fit: cover;
+    width: 100%;
+    height: 400px;
 
+    padding: 1rem;
     img {
+      object-fit: cover;
       width: 100%;
       height: 100%;
     }

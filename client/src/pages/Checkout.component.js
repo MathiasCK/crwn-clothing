@@ -77,10 +77,6 @@ const Header = styled.div`
   .header-block {
     text-transform: capitalize;
     width: 23%;
-
-    &:last-child {
-      width: 8%;
-    }
   }
 `;
 

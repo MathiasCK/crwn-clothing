@@ -6,6 +6,8 @@ import {
 import {
   fetchCollectionsFailure,
   fetchCollectionsSuccess,
+  fetchCollectionsTypeFailure,
+  fetchCollectionsTypeSuccess,
 } from "./shop.actions";
 
 import ShopActionTypes from "./shop.types";

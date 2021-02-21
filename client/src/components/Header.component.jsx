@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useRouteMatch, useHistory } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/crown.svg";
 import { connect } from "react-redux";
 import CartIcon from "./Cart-icon.component";
@@ -13,6 +13,12 @@ import { motion } from "framer-motion";
 
 const Header = ({ currentUser, hidden, signOutStart }) => {
   const { pathname } = useLocation();
+  const [ddMenu, setDdMenu] = useState(false);
+  const handleHover = () => setDdMenu(!ddMenu);
+
+  const history = useHistory();
+  const match = useRouteMatch();
+
   return (
     <StyledHeader>
       <Link className="logo-container" to="/">
@@ -20,7 +26,7 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
       </Link>
       <Options>
         <div className="relative">
-          <Link className="option" to="/shop">
+          <Link className="option" to="/shop" onMouseEnter={handleHover}>
             Shop
           </Link>
           <Line
@@ -29,6 +35,16 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
             animate={{ width: pathname === "/shop" ? "100%" : "0%" }}
           />
         </div>
+
+        {ddMenu ? (
+          <StyledDropdown onMouseLeave={handleHover}>
+            <Link to="/shop/mens">Mens</Link>
+            <Link to="/shop/womens">Womens</Link>
+            <Link to="/shop/hats">Hats</Link>
+            <Link to="/shop/jackets">Jackets</Link>
+            <Link to="/shop/sneakers">Sneakers</Link>
+          </StyledDropdown>
+        ) : null}
         <div className="relative">
           <Link className="option" to="/contact">
             Contact
@@ -108,12 +124,26 @@ const Options = styled.div`
 `;
 
 const Line = styled(motion.div)`
-  height: 0.2rem;
-  background: #ff033e;
+  height: 0.1rem;
+  background: black;
   width: 0%;
   position: absolute;
   bottom: 0% !important;
   left: 0%;
+`;
+
+const StyledDropdown = styled.div`
+  background: white;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  padding: 1rem 3rem;
+  top: 70px;
+  a {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
 `;
 
 const mapStateToProps = createStructuredSelector({
