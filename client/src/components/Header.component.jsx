@@ -23,7 +23,12 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
       </Link>
       <Options>
         <div className="relative">
-          <Link className="option" to="/shop" onMouseEnter={handleHover}>
+          <Link
+            className="option"
+            to="/shop"
+            onMouseEnter={handleHover}
+            onClick={() => setDdMenu(false)}
+          >
             Shop
           </Link>
           <Line

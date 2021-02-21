@@ -1,29 +1,37 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import CollectionItem from "../../components/Collection-item.component";
-import { selectCollection } from "../../redux/shop/shop.selectors";
+import CollectionItem from "../components/Collection-item.component";
+import { selectCollection } from "../redux/shop/shop.selectors";
 import { motion } from "framer-motion";
-import { pageAnimation } from "../../animations/animations";
+import { pageAnimation } from "../animations/animations";
 
 const CollectionPage = ({ collection }) => {
   // HVER ENKELT COLLECTION PÅ SHOP SIDEN
 
   const { title, items, routeName } = collection;
   return (
-    <StyledCollectionPage
-      exit="exit"
-      variants={pageAnimation}
-      initial="hidden"
-      animate="show"
-    >
-      <h2 className="title">{title}</h2>
-      <div className="items">
-        {items.map((item) => (
-          <CollectionItem key={item.id} collectionId={routeName} item={item} />
-        ))}
-      </div>
-    </StyledCollectionPage>
+    <>
+      {collection && (
+        <StyledCollectionPage
+          exit="exit"
+          variants={pageAnimation}
+          initial="hidden"
+          animate="show"
+        >
+          <h2 className="title">{title}</h2>
+          <div className="items">
+            {items.map((item) => (
+              <CollectionItem
+                key={item.id}
+                collectionId={routeName}
+                item={item}
+              />
+            ))}
+          </div>
+        </StyledCollectionPage>
+      )}
+    </>
   );
 };
 

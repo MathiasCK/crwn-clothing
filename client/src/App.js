@@ -11,6 +11,7 @@ import "./App.css";
 // Components
 import Header from "./components/Header.component";
 import Footer from "./components/Footer.component";
+import Spinner from "./components/spinner/spinner.component";
 
 // Redux
 import { checkUserSession } from "./redux/user/user.actions";
@@ -36,7 +37,7 @@ const App = ({ checkUserSession, currentUser }) => {
       <Header />
       <SideNav />
       <Switch>
-        <Suspense fallback={<div>...Loading</div>}>
+        <Suspense fallback={<Spinner />}>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop/:collection/:id" component={ItemDetail} />
           <Route path="/shop" component={ShopPage} />

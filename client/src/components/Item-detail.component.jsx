@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { pageAnimation } from "../animations/animations";
 
 import { useHistory } from "react-router-dom";
-import { Spinner } from "./With-spinner.component";
+import Spinner from "./spinner/spinner.component";
 import ShopActionTypes from "../redux/shop/shop.types";
 
 const ItemDetail = ({ title, items }) => {
