@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Link, useLocation, useRouteMatch, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/crown.svg";
 import { connect } from "react-redux";
 import CartIcon from "./Cart-icon.component";
@@ -15,9 +15,6 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
   const { pathname } = useLocation();
   const [ddMenu, setDdMenu] = useState(false);
   const handleHover = () => setDdMenu(!ddMenu);
-
-  const history = useHistory();
-  const match = useRouteMatch();
 
   return (
     <StyledHeader>

@@ -8,7 +8,7 @@ import {
 } from "../redux/cart/cart.actions";
 
 const CheckOutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
-  const { name, imageUrl, imageUrl2, price, quantity } = cartItem;
+  const { name, imageUrl, price, quantity } = cartItem;
   return (
     <StyledCheckoutItem>
       <div className="image-container">

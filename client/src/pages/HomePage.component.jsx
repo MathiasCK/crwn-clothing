@@ -5,8 +5,12 @@ import CustomButton from "../components/Custom-button.component";
 import Directory from "../components/Directory.component";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../animations/animations";
+import { connect } from "react-redux";
+import { selectCurrentUser } from "../redux/user/user-selector";
+import { createStructuredSelector } from "reselect";
 
-const HomePage = ({ history }) => {
+const HomePage = ({ history, currentUser }) => {
+  console.log(currentUser);
   return (
     <motion.div
       exit="exit"
@@ -44,4 +48,8 @@ const Button = styled.div`
   margin: 1rem 0;
 `;
 
-export default HomePage;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
+
+export default connect(mapStateToProps)(HomePage);

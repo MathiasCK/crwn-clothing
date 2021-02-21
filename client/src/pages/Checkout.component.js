@@ -68,18 +68,6 @@ const StyledCheckout = styled(motion.div)`
   padding-top: 80px;
 `;
 
-const Header = styled.div`
-  width: 100%;
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid darkgrey;
-  .header-block {
-    text-transform: capitalize;
-    width: 23%;
-  }
-`;
-
 const Total = styled.div`
   @media (min-width: 685px) {
     flex-direction: row;
