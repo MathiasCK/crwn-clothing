@@ -10,7 +10,6 @@ import { selectCurrentUser } from "../redux/user/user-selector";
 import { createStructuredSelector } from "reselect";
 
 const HomePage = ({ history, currentUser }) => {
-  console.log(currentUser);
   return (
     <motion.div
       exit="exit"
@@ -38,14 +37,14 @@ const HomePage = ({ history, currentUser }) => {
 };
 
 const StyledHome = styled(motion.div)`
-  padding-top: 80px;
+  padding-top: 10px;
 `;
 
 const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0;
+  margin-top: 1rem;
 `;
 
 const mapStateToProps = createStructuredSelector({

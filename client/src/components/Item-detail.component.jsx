@@ -95,7 +95,7 @@ const StyledItemDetail = styled(motion.div)`
   grid-row-gap: 2rem;
   justify-items: center;
   min-height: 90vh;
-  padding-top: 80px;
+  padding-top: 10px;
 `;
 
 const Image = styled.div`

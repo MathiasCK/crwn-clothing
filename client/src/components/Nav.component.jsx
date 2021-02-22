@@ -11,7 +11,7 @@ import { selectCurrentUser } from "../redux/user/user-selector";
 import { signOutStart } from "../redux/user/user.actions";
 import { motion } from "framer-motion";
 
-const Header = ({ currentUser, hidden, signOutStart }) => {
+const Navbar = ({ currentUser, hidden, signOutStart }) => {
   const { pathname } = useLocation();
   const [ddMenu, setDdMenu] = useState(false);
   const handleHover = () => setDdMenu(!ddMenu);
@@ -157,4 +157,4 @@ const mapDispatchToProps = (dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

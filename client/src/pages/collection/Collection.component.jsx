@@ -30,7 +30,7 @@ const CollectionPage = ({ collection }) => {
 const StyledCollectionPage = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  padding-top: 80px;
+  padding-top: 10px;
 
   .title {
     font-size: 50px;

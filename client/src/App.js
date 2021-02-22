@@ -9,13 +9,16 @@ import { createStructuredSelector } from "reselect";
 import "./App.css";
 
 // Components
-import Header from "./components/Header.component";
+import Navbar from "./components/Nav.component";
 import Footer from "./components/Footer.component";
 import Spinner from "./components/spinner/spinner.component";
 
 // Redux
 import { checkUserSession } from "./redux/user/user.actions";
 import SideNav from "./components/Side.header.component";
+
+// Error
+import ErrorBoundary from "./error-boundary.component";
 
 // Pages
 const HomePage = lazy(() => import("./pages/HomePage.component"));
@@ -34,25 +37,27 @@ const App = ({ checkUserSession, currentUser }) => {
 
   return (
     <div>
-      <Header />
+      <Navbar />
       <SideNav />
       <Switch>
-        <Suspense fallback={<Spinner />}>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop/:collection/:id" component={ItemDetail} />
-          <Route path="/shop" component={ShopPage} />
-          <Route path="/contact" component={Contact} />
-          <Route exact path="/checkout" component={CheckoutPage} />
-          <Route
-            exact
-            path="/signin"
-            render={() =>
-              currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
-            }
-          />
-        </Suspense>
+        <ErrorBoundary>
+          <Suspense fallback={<Spinner />}>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/shop/:collection/:id" component={ItemDetail} />
+            <Route path="/shop" component={ShopPage} />
+            <Route path="/contact" component={Contact} />
+            <Route exact path="/checkout" component={CheckoutPage} />
+            <Route
+              exact
+              path="/signin"
+              render={() =>
+                currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
+              }
+            />
+          </Suspense>
+        </ErrorBoundary>
       </Switch>
-      {/* <Footer />*/}
+      <Footer />
     </div>
   );
 };

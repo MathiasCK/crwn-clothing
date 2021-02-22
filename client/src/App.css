@@ -12,7 +12,7 @@ html {
 
 body {
   font-family: "Open Sans Condensed", sans-serif;
-  padding: 20px 0px;
+  margin: 70px 0px;
   overflow: overlay;
   overflow-x: hidden;
 }
