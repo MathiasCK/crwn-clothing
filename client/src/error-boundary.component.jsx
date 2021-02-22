@@ -10,6 +10,7 @@ class ErrorBoundary extends React.Component {
 
     this.state = {
       hasErrored: false,
+      redirect: false,
     };
   }
 
@@ -22,9 +23,6 @@ class ErrorBoundary extends React.Component {
     console.log(error);
   }
 
-  state = {
-    redirect: false,
-  };
   setRedirect = () => {
     this.setState({
       redirect: true,
@@ -75,6 +73,7 @@ const ErrorImageOverlay = styled.div`
   background-position: center;
 `;
 
+/*
 const ErrorImageContainer = styled.div`
   display: inline-block;
 
@@ -90,6 +89,6 @@ const ErrorImageText = styled.h2`
   &.small {
     font-size: 1.5rem;
   }
-`;
+`;*/
 
 export default ErrorBoundary;

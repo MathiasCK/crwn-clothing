@@ -146,7 +146,7 @@ const StyledNav = styled(motion.div)`
     display: flex;
     justify-content: center;
     position: fixed;
-    top: 8%;
+    top: 70px;
     right: -100%;
     transition: 850ms;
     &.active {

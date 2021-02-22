@@ -40,11 +40,21 @@ const Navbar = ({ currentUser, hidden, signOutStart }) => {
 
         {ddMenu ? (
           <StyledDropdown onMouseLeave={handleHover}>
-            <Link to="/shop/mens">Mens</Link>
-            <Link to="/shop/womens">Womens</Link>
-            <Link to="/shop/hats">Hats</Link>
-            <Link to="/shop/jackets">Jackets</Link>
-            <Link to="/shop/sneakers">Sneakers</Link>
+            <Link to="/shop/mens" onClick={handleHover}>
+              Mens
+            </Link>
+            <Link to="/shop/womens" onClick={handleHover}>
+              Womens
+            </Link>
+            <Link to="/shop/hats" onClick={handleHover}>
+              Hats
+            </Link>
+            <Link to="/shop/jackets" onClick={handleHover}>
+              Jackets
+            </Link>
+            <Link to="/shop/sneakers" onClick={handleHover}>
+              Sneakers
+            </Link>
           </StyledDropdown>
         ) : null}
         <div className="relative">

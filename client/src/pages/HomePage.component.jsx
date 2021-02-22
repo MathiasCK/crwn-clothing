@@ -22,7 +22,7 @@ const HomePage = ({ history, currentUser }) => {
       </Helmet>
       <StyledHome>
         <Directory />
-        <Button>
+        <center>
           <CustomButton
             onClick={() => {
               history.push("/shop");
@@ -30,7 +30,7 @@ const HomePage = ({ history, currentUser }) => {
           >
             ENTER SHOP
           </CustomButton>
-        </Button>
+        </center>
       </StyledHome>
     </motion.div>
   );
@@ -38,13 +38,9 @@ const HomePage = ({ history, currentUser }) => {
 
 const StyledHome = styled(motion.div)`
   padding-top: 10px;
-`;
-
-const Button = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
+  button {
+    margin-top: 2rem;
+  }
 `;
 
 const mapStateToProps = createStructuredSelector({
