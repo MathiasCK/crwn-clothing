@@ -48,4 +48,4 @@ const Border = styled.div`
   background: #ccc;
 `;
 
-export default CartItem;
+export default React.memo(CartItem); // Memorizes the quantity of cartitems so it doesn't re-render
