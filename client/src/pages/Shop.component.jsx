@@ -9,11 +9,13 @@ import { pageAnimation } from "../animations/animations";
 import { fetchCollectionsStart } from "../redux/shop/shop.actions";
 import Spinner from "../components/spinner/spinner.component";
 
-const CollectionsOverview = lazy(() =>
-  import("../components/collections-overview/Collections-overview.component")
+const CollectionsOverviewContainer = lazy(() =>
+  import("../components/collections-overview/Collections-overview.container")
 );
 
-const CollectionPage = lazy(() => import("./Collection.component"));
+const CollectionPageContainer = lazy(() =>
+  import("./collection/Collection.container")
+);
 
 const ShopPage = ({ fetchCollectionsStart, match }) => {
   useEffect(() => {
@@ -32,10 +34,14 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
       </Helmet>
       <div className="shop-page">
         <Suspense fallback={<Spinner />}>
-          <Route exact path={`${match.path}`} component={CollectionsOverview} />
+          <Route
+            exact
+            path={`${match.path}`}
+            component={CollectionsOverviewContainer}
+          />
           <Route
             path={`${match.path}/:collectionId`}
-            component={CollectionPage}
+            component={CollectionPageContainer}
           />
         </Suspense>
       </div>

@@ -99,7 +99,11 @@ const StyledItemDetail = styled(motion.div)`
 `;
 
 const Image = styled.div`
-  height: 500px;
+  @media (min-width: 560px) {
+    height: 70%;
+    width: 70%;
+  }
+  height: 100%;
   width: 100%;
   margin-bottom: 1rem;
   img {

@@ -38,8 +38,8 @@ const StyledCheckoutItem = styled.div`
   @media (min-width: 840px) {
     flex-direction: row;
     .image-container {
-      padding-right: 5rem;
-      width: 50%;
+      padding-right: 0rem;
+      width: 50% !important;
     }
   }
 
@@ -54,8 +54,7 @@ const StyledCheckoutItem = styled.div`
   justify-content: space-between;
   .image-container {
     width: 100%;
-    height: 400px;
-
+    height: 500px;
     padding: 1rem;
     img {
       object-fit: cover;
