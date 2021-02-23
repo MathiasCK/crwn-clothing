@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import CustomButton from "../components/Custom-button.component";
-import FormInput from "../components/Form-input.component";
 import { db } from "../Firebase/Firebase.utils";
+import CustomButton from "../utils/Custom-button.component";
+import FormInput from "../utils/Form-input.component";
 
 const Contact = () => {
   const history = useHistory();

@@ -5,10 +5,10 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentUser } from "../redux/user/user-selector";
-import { signOutStart } from "../redux/user/user.actions";
-import { ReactComponent as Logo } from "../assets/crown.svg";
-import CartIcon from "./SideCart-icon.component";
+import { selectCurrentUser } from "../../redux/user/user-selector";
+import { signOutStart } from "../../redux/user/user.actions";
+import { ReactComponent as Logo } from "../../assets/crown.svg";
+import CartIcon from "../cart/SideCart-icon.component";
 
 const SideNav = () => {
   const [sideBar, setSideBar] = useState(false);

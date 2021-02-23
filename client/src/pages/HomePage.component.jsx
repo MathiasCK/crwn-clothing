@@ -1,11 +1,11 @@
 import React, { Profiler } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import CustomButton from "../components/Custom-button.component";
-import Directory from "../components/Directory.component";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../animations/animations";
 import { useHistory } from "react-router";
+import Directory from "../components/directory/Directory.component";
+import CustomButton from "../utils/Custom-button.component";
 
 const HomePage = () => {
   const history = useHistory();

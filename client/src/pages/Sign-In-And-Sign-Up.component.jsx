@@ -1,8 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import SignIn from "../components/Sign-in.components";
-import SignUp from "../components/Sign-up.component";
+import SignIn from "../components/sign-in-up/Sign-in.components";
+import SignUp from "../components/sign-in-up/Sign-up.component";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../animations/animations";
 

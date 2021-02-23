@@ -2,16 +2,15 @@ import React, { useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import CustomButton from "./Custom-button.component";
-import { addItem } from "../redux/cart/cart.actions";
+import CustomButton from "../../utils/Custom-button.component";
+import { addItem } from "../../redux/cart/cart.actions";
 import { Helmet } from "react-helmet";
 
 import { motion } from "framer-motion";
-import { pageAnimation } from "../animations/animations";
-
+import { pageAnimation } from "../../animations/animations";
 import { useHistory } from "react-router-dom";
-import Spinner from "./spinner/spinner.component";
-import ShopActionTypes from "../redux/shop/shop.types";
+import ShopActionTypes from "../../redux/shop/shop.types";
+import Spinner from "../../utils/spinner/spinner.component";
 
 const ItemDetail = ({ title, items }) => {
   const match = useRouteMatch();

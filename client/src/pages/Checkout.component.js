@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import CheckOutItem from "../components/Checkout-item.component";
-import StripeCheckoutButton from "../components/Stripe-button.component";
+import CheckOutItem from "../components/checkout/Checkout-item.component";
+import StripeCheckoutButton from "../utils/Stripe-button.component";
 import { selectCartItems, selectCartTotal } from "../redux/cart/cart.selectors";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../animations/animations";

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import {
-  googleSignInStart,
   emailSignInStart,
-} from "../redux/user/user.actions";
-import CustomButton from "./Custom-button.component";
-import FormInput from "./Form-input.component";
+  googleSignInStart,
+} from "../../redux/user/user.actions";
+import CustomButton from "../../utils/Custom-button.component";
+import FormInput from "../../utils/Form-input.component";
 
 const SignIn = () => {
   const dispatch = useDispatch();

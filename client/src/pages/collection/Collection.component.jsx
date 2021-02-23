@@ -1,13 +1,17 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import styled from "styled-components";
 import { selectCollection } from "../../redux/shop/shop.selectors";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../../animations/animations";
-import CollectionItem from "../../components/Collection-item.component";
+import { useRouteMatch } from "react-router";
+import CollectionItem from "../../components/collection/Collection-item.component";
 
-const CollectionPage = ({ collection }) => {
+const CollectionPage = () => {
+  const match = useRouteMatch();
+
   // HVER ENKELT COLLECTION PÅ SHOP SIDEN
+  const collection = useSelector(selectCollection(match.params.collectionId));
 
   const { title, items, routeName } = collection;
   return (
@@ -50,8 +54,4 @@ const StyledCollectionPage = styled(motion.div)`
   }
 `;
 
-const mapStateToProps = (state, ownProps) => ({
-  collection: selectCollection(ownProps.match.params.collectionId)(state),
-});
-
-export default connect(mapStateToProps)(CollectionPage);
+export default CollectionPage;

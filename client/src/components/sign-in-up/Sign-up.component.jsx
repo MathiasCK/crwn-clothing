@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { signUpStart } from "../redux/user/user.actions";
-import CustomButton from "./Custom-button.component";
-import FormInput from "./Form-input.component";
+import { signUpStart } from "../../redux/user/user.actions";
+import CustomButton from "../../utils/Custom-button.component";
+import FormInput from "../../utils/Form-input.component";
 
 const SignUp = () => {
   const dispatch = useDispatch();

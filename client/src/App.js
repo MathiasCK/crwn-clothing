@@ -8,13 +8,13 @@ import { selectCurrentUser } from "./redux/user/user-selector";
 import "./App.css";
 
 // Components
-import Navbar from "./components/Nav.component";
-import Footer from "./components/Footer.component";
-import Spinner from "./components/spinner/spinner.component";
+import Navbar from "./components/nav/Nav.component";
+import SideNav from "./components/nav/Side-Nav.component";
+import Footer from "./components/footer/Footer.component";
+import Spinner from "./utils/spinner/spinner.component";
 
 // Redux
 import { checkUserSession } from "./redux/user/user.actions";
-import SideNav from "./components/Side-Nav.component";
 
 // Error
 import ErrorBoundary from "./error-boundary.component";
@@ -24,7 +24,9 @@ const HomePage = lazy(() => import("./pages/HomePage.component"));
 const ShopPage = lazy(() => import("./pages/Shop.component"));
 const CheckoutPage = lazy(() => import("./pages/Checkout.component"));
 const Contact = lazy(() => import("./pages/Contact.component"));
-const ItemDetail = lazy(() => import("./components/Item-detail.component"));
+const ItemDetail = lazy(() =>
+  import("./components/collection/Item-detail.component")
+);
 const SignInAndSignUpPage = lazy(() =>
   import("./pages/Sign-In-And-Sign-Up.component")
 );

@@ -2,10 +2,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, withRouter } from "react-router-dom";
 import styled from "styled-components";
-import { selectCartItems } from "../redux/cart/cart.selectors";
 import CartItem from "./Cart-item.component";
-import CustomButton from "./Custom-button.component";
-import { toggleCartHidden } from "../redux/cart/cart.actions";
+import CustomButton from "../../utils/Custom-button.component";
+import { selectCartItems } from "../../redux/cart/cart.selectors";
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
 const CartDropDown = () => {
   const cartItems = useSelector(selectCartItems);

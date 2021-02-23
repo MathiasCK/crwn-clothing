@@ -1,8 +1,6 @@
 import React from "react";
-import { connect, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Link, useRouteMatch } from "react-router-dom";
-import { addItem } from "../redux/cart/cart.actions";
 
 const CollectionItem = ({ item, collectionId }) => {
   const { params } = useRouteMatch();

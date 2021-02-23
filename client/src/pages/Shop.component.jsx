@@ -7,10 +7,12 @@ import { motion } from "framer-motion";
 import { pageAnimation } from "../animations/animations";
 
 import { fetchCollectionsStart } from "../redux/shop/shop.actions";
-import Spinner from "../components/spinner/spinner.component";
+import Spinner from "../utils/spinner/spinner.component";
 
 const CollectionsOverviewContainer = lazy(() =>
-  import("../components/collections-overview/Collections-overview.container")
+  import(
+    "../components/collection/collections-overview/Collections-overview.container"
+  )
 );
 
 const CollectionPageContainer = lazy(() =>

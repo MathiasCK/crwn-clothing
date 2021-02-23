@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-import CustomButton from "./components/Custom-button.component";
+import CustomButton from "./utils/Custom-button.component";
 import { Redirect } from "react-router-dom";
 
 class ErrorBoundary extends React.Component {

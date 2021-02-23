@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
-import { ReactComponent as Logo } from "../assets/crown.svg";
+import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { useDispatch, useSelector } from "react-redux";
-import CartIcon from "./Cart-icon.component";
-import CartDropDown from "./Cart-dropdown.component";
-import { selectCartHidden } from "../redux/cart/cart.selectors";
-import { selectCurrentUser } from "../redux/user/user-selector";
-import { signOutStart } from "../redux/user/user.actions";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user-selector";
+import { signOutStart } from "../../redux/user/user.actions";
 import { motion } from "framer-motion";
+import CartDropDown from "../cart/Cart-dropdown.component";
+import CartIcon from "../cart/Cart-icon.component";
 
 const Navbar = () => {
   const { pathname } = useLocation();

@@ -9,7 +9,7 @@ import { store, persistor } from "./redux/store";
 
 import { PersistGate } from "redux-persist/integration/react";
 
-import ScrollToTop from "./components/Scroll-top.component";
+import ScrollToTop from "./utils/Scroll-top.component";
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,14 +1,19 @@
 import React from "react";
-import { connect, useSelector } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { ReactComponent as ShoppingIcon } from "../assets/shopping-bag.svg";
-import { selectCartItemsCount } from "../redux/cart/cart.selectors";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
+import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
 
-const SideCartIcon = () => {
+const CartIcon = () => {
   const itemCount = useSelector(selectCartItemsCount);
+
+  const dispatch = useDispatch();
+  const toggle = () => {
+    dispatch(toggleCartHidden());
+  };
   return (
-    <StyledCartIcon>
+    <StyledCartIcon onClick={toggle}>
       <ShoppingIcon className="shopping-icon" />
       <ItemCount className="item-count">{itemCount}</ItemCount>
     </StyledCartIcon>
@@ -37,4 +42,4 @@ const ItemCount = styled.span`
   bottom: 12px;
 `;
 
-export default React.memo(SideCartIcon);
+export default React.memo(CartIcon);
