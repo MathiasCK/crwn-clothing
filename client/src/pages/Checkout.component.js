@@ -7,16 +7,21 @@ import StripeCheckoutButton from "../components/Stripe-button.component";
 import { selectCartItems, selectCartTotal } from "../redux/cart/cart.selectors";
 import { motion } from "framer-motion";
 import { pageAnimation } from "../animations/animations";
+import { Helmet } from "react-helmet";
 
 const CheckoutPage = ({ cartItems, total }) => {
   return (
-    <StyledCheckout
-      exit="exit"
-      variants={pageAnimation}
-      initial="hidden"
-      animate="show"
-    >
-      {/*<Header>
+    <>
+      <Helmet>
+        <title>CRWN APPERAL | Checkout</title>
+      </Helmet>
+      <StyledCheckout
+        exit="exit"
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+      >
+        {/*<Header>
         <div className="header-block">
           <span>Product</span>
         </div>
@@ -33,25 +38,26 @@ const CheckoutPage = ({ cartItems, total }) => {
           <span>Remove</span>
         </div>
       </Header>*/}
-      {cartItems.map((cartItem) => (
-        <CheckOutItem key={cartItem.id} cartItem={cartItem} />
-      ))}
-      {cartItems.length ? (
-        <div>
-          <Total>
-            <span>TOTAL: NOK {total}</span>
-            <StripeCheckoutButton price={total} />
-          </Total>
-          <Warning>
-            *Please use the following test credit card for payments*
-            <br />
-            4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
-          </Warning>
-        </div>
-      ) : (
-        <h3>Your cart is empty, nothing to see here</h3>
-      )}
-    </StyledCheckout>
+        {cartItems.map((cartItem) => (
+          <CheckOutItem key={cartItem.id} cartItem={cartItem} />
+        ))}
+        {cartItems.length ? (
+          <div>
+            <Total>
+              <span>TOTAL: NOK {total}</span>
+              <StripeCheckoutButton price={total} />
+            </Total>
+            <Warning>
+              *Please use the following test credit card for payments*
+              <br />
+              4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
+            </Warning>
+          </div>
+        ) : (
+          <h3>Your cart is empty, nothing to see here</h3>
+        )}
+      </StyledCheckout>
+    </>
   );
 };
 

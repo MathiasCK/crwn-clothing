@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
-const config = {
+const firebaseApp = firebase.initializeApp({
   apiKey: "AIzaSyB2CqsA_4hgdf4BE3TYVJIjSJ4pYjNSR-c",
   authDomain: "crwn-db-cd2a8.firebaseapp.com",
   projectId: "crwn-db-cd2a8",
@@ -10,7 +10,10 @@ const config = {
   messagingSenderId: "330064213310",
   appId: "1:330064213310:web:49d1e296a60e0b5c60686f",
   measurementId: "G-QFFSTF7G35",
-};
+});
+
+// Contact Form
+export const db = firebaseApp.firestore();
 
 export const createUserProfileDocument = async (userAuth, addidionalData) => {
   if (!userAuth) return;
@@ -35,8 +38,6 @@ export const createUserProfileDocument = async (userAuth, addidionalData) => {
   }
   return userRef;
 };
-
-firebase.initializeApp(config);
 
 // STORE SHOP DATA IN FIREBASE
 export const addCollectionAndDocuments = async (
