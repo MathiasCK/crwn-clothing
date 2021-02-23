@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Profiler } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import CustomButton from "../components/Custom-button.component";
@@ -11,28 +11,42 @@ import { createStructuredSelector } from "reselect";
 
 const HomePage = ({ history, currentUser }) => {
   return (
-    <motion.div
-      exit="exit"
-      variants={pageAnimation}
-      initial="hidden"
-      animate="show"
-    >
-      <Helmet>
-        <title>CRWN Apperal | Home</title>
-      </Helmet>
-      <StyledHome>
-        <Directory />
-        <center>
-          <CustomButton
-            onClick={() => {
-              history.push("/shop");
-            }}
+    <>
+      {currentUser ? alert("You've succesfully logged in!") : ""}
+      <motion.div
+        exit="exit"
+        variants={pageAnimation}
+        initial="hidden"
+        animate="show"
+      >
+        <Helmet>
+          <title>CRWN Apperal | Home</title>
+        </Helmet>
+        <StyledHome>
+          <Profiler
+            id="Directory"
+            onRender={(id, phase, actualDuration) =>
+              console.log({
+                id,
+                phase,
+                actualDuration,
+              })
+            }
           >
-            ENTER SHOP
-          </CustomButton>
-        </center>
-      </StyledHome>
-    </motion.div>
+            <Directory />
+          </Profiler>
+          <center>
+            <CustomButton
+              onClick={() => {
+                history.push("/shop");
+              }}
+            >
+              ENTER SHOP
+            </CustomButton>
+          </center>
+        </StyledHome>
+      </motion.div>
+    </>
   );
 };
 
