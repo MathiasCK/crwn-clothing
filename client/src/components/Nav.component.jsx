@@ -2,20 +2,25 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as Logo } from "../assets/crown.svg";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartIcon from "./Cart-icon.component";
 import CartDropDown from "./Cart-dropdown.component";
-import { createStructuredSelector } from "reselect";
 import { selectCartHidden } from "../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../redux/user/user-selector";
 import { signOutStart } from "../redux/user/user.actions";
 import { motion } from "framer-motion";
 
-const Navbar = ({ currentUser, hidden, signOutStart }) => {
+const Navbar = () => {
   const { pathname } = useLocation();
   const [ddMenu, setDdMenu] = useState(false);
   const handleHover = () => setDdMenu(!ddMenu);
 
+  const currentUser = useSelector(selectCurrentUser);
+  const hidden = useSelector(selectCartHidden);
+  const dispatch = useDispatch();
+  const signOut = () => {
+    dispatch(signOutStart());
+  };
   return (
     <StyledHeader>
       <Link className="logo-container" to="/">
@@ -69,7 +74,7 @@ const Navbar = ({ currentUser, hidden, signOutStart }) => {
         </div>
         <div className="relative">
           {currentUser ? (
-            <div className="option" onClick={signOutStart}>
+            <div className="option" onClick={signOut}>
               SIGN OUT
             </div>
           ) : (
@@ -158,13 +163,4 @@ const StyledDropdown = styled.div`
   }
 `;
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-  hidden: selectCartHidden,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  signOutStart: () => dispatch(signOutStart()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default React.memo(Navbar);

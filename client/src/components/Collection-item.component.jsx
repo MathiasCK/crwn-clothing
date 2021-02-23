@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Link, useRouteMatch } from "react-router-dom";
 import { addItem } from "../redux/cart/cart.actions";
@@ -8,6 +8,7 @@ const CollectionItem = ({ item, collectionId }) => {
   const { params } = useRouteMatch();
 
   const { name, price, imageUrl, id, imageUrl2 } = item;
+
   // HVER ENKELT ITEM I COLLECTION
   return (
     <StyledCollection>
@@ -91,8 +92,4 @@ const BackgroundImage = styled.div`
       : ""};
 `;
 
-const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
-});
-
-export default connect(null, mapDispatchToProps)(CollectionItem);
+export default CollectionItem;

@@ -1,11 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { ReactComponent as ShoppingIcon } from "../assets/shopping-bag.svg";
 import { selectCartItemsCount } from "../redux/cart/cart.selectors";
 import styled from "styled-components";
 
-const SideCartIcon = ({ itemCount }) => {
+const SideCartIcon = () => {
+  const itemCount = useSelector(selectCartItemsCount);
   return (
     <StyledCartIcon>
       <ShoppingIcon className="shopping-icon" />
@@ -36,8 +37,4 @@ const ItemCount = styled.span`
   bottom: 12px;
 `;
 
-const mapStateToProps = createStructuredSelector({
-  itemCount: selectCartItemsCount,
-});
-
-export default connect(mapStateToProps)(SideCartIcon);
+export default React.memo(SideCartIcon);

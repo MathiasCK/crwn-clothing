@@ -1,6 +1,6 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Route } from "react-router-dom";
 
 import { motion } from "framer-motion";
@@ -17,10 +17,11 @@ const CollectionPageContainer = lazy(() =>
   import("./collection/Collection.container")
 );
 
-const ShopPage = ({ fetchCollectionsStart, match }) => {
+const ShopPage = ({ match }) => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetchCollectionsStart();
-  }, [fetchCollectionsStart]);
+    dispatch(fetchCollectionsStart());
+  }, [dispatch, fetchCollectionsStart]);
 
   return (
     <motion.div
@@ -49,8 +50,4 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
-});
-
-export default connect(null, mapDispatchToProps)(ShopPage);
+export default React.memo(ShopPage);

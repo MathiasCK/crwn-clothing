@@ -1,6 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import CheckOutItem from "../components/Checkout-item.component";
 import StripeCheckoutButton from "../components/Stripe-button.component";
@@ -9,7 +8,9 @@ import { motion } from "framer-motion";
 import { pageAnimation } from "../animations/animations";
 import { Helmet } from "react-helmet";
 
-const CheckoutPage = ({ cartItems, total }) => {
+const CheckoutPage = () => {
+  const cartItems = useSelector(selectCartItems);
+  const total = useSelector(selectCartTotal);
   return (
     <>
       <Helmet>
@@ -90,11 +91,6 @@ const Total = styled.div`
   }
 `;
 
-const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
-  total: selectCartTotal,
-});
-
 const Warning = styled.div`
   color: red;
   font-size: 1.5rem;
@@ -105,4 +101,4 @@ const Warning = styled.div`
   text-align: center;
 `;
 
-export default connect(mapStateToProps)(CheckoutPage);
+export default React.memo(CheckoutPage);

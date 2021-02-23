@@ -1,9 +1,8 @@
 // Utils
 import React, { useEffect, lazy, Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "./redux/user/user-selector";
-import { createStructuredSelector } from "reselect";
 
 // Styles
 import "./App.css";
@@ -15,7 +14,7 @@ import Spinner from "./components/spinner/spinner.component";
 
 // Redux
 import { checkUserSession } from "./redux/user/user.actions";
-import SideNav from "./components/Side.header.component";
+import SideNav from "./components/Side-Nav.component";
 
 // Error
 import ErrorBoundary from "./error-boundary.component";
@@ -30,10 +29,13 @@ const SignInAndSignUpPage = lazy(() =>
   import("./pages/Sign-In-And-Sign-Up.component")
 );
 
-const App = ({ checkUserSession, currentUser }) => {
+const App = () => {
+  const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    checkUserSession();
-  }, [checkUserSession]);
+    dispatch(checkUserSession());
+  }, [dispatch, checkUserSession]);
 
   return (
     <div>
@@ -62,12 +64,4 @@ const App = ({ checkUserSession, currentUser }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  checkUserSession: () => dispatch(checkUserSession()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default React.memo(App);

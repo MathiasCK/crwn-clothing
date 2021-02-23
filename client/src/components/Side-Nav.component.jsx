@@ -4,19 +4,23 @@ import * as AiIcons from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { selectCartHidden } from "../redux/cart/cart.selectors";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../redux/user/user-selector";
 import { signOutStart } from "../redux/user/user.actions";
 import { ReactComponent as Logo } from "../assets/crown.svg";
 import CartIcon from "./SideCart-icon.component";
 
-const SideNav = ({ currentUser, hidden, signOutStart }) => {
+const SideNav = () => {
   const [sideBar, setSideBar] = useState(false);
-
   const showSideBar = () => setSideBar(!sideBar);
   const pathname = useLocation();
+
+  const currentUser = useSelector(selectCurrentUser);
+
+  const dispatch = useDispatch();
+  const signOut = () => {
+    dispatch(signOutStart());
+  };
   return (
     <>
       <Navbar>
@@ -62,7 +66,7 @@ const SideNav = ({ currentUser, hidden, signOutStart }) => {
             </li>
             <li>
               {currentUser ? (
-                <div onClick={signOutStart}>SIGN OUT</div>
+                <div onClick={signOut}>SIGN OUT</div>
               ) : (
                 <Link to="/signin" onClick={showSideBar}>
                   SIGN IN
@@ -165,13 +169,4 @@ const Line = styled(motion.div)`
   left: 0%;
 `;
 
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-  hidden: selectCartHidden,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  signOutStart: () => dispatch(signOutStart()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SideNav);
+export default React.memo(SideNav);
